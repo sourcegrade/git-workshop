@@ -1,0 +1,137 @@
+\documentclass[
+    titleprefix=Git\space{}Cheat\space{}Sheet,
+    inlineshortcut=java,
+    corporatedesign,
+    boxarc,
+    % dark_mode,
+]{algoexercise}
+
+%%------------%%
+%%--Packages--%%
+%%------------%%
+
+% \usepackage{audutils}
+% \usepackage{fopbot}
+
+%%---------------------------%%
+%%--Dokumenteneinstellungen--%%
+%%---------------------------%%
+
+\subtitle{Alex und Dustin}
+\dozent{Alex und Dustin} % chktex 12
+\fachbereich{Informatik}
+\semester{Ofahrt 2022}
+\sheetnumber{0}
+\title[Ausgabe von Listen]{}
+\version{1.0}
+
+
+\graphicspath{{../pictures/}}
+
+%%----------------------------%%
+%%--Stilistische Anpassungen--%%
+%%----------------------------%%
+
+% \ConfigureHeadline{
+%     headline={aud-min}
+% }
+
+\renewcommand{\texttt}[1]{{\small{\textcolor{TUDa-3d}{\ttfamily\detokenize{#1}}}}}
+
+\begin{document}%
+
+    \small
+    \section*{Git Cheat Sheet}
+
+    % TODO anstatt commit auch branch
+
+    \begin{minipage}[t]{.475\textwidth}
+        \subsection*{GitLab und Moodle}
+        Aus dem \textit{Myzel}-Netzwerk erreichst du folgende Seiten:
+        \begin{itemize}
+            \item GitLab | \href{http://gitlab.ofahrt2022.de/}{http://gitlab.ofahrt2022.de/}
+            \item Moodle | \href{http://moodle.ofahrt2022.de/course/view.php?id=4} {http://moodle.ofahrt2022.de/}
+        \end{itemize}
+
+        \subsection*{Anmerkungen}
+
+        Anstatt eines Commits kann auch ein Branch angegeben werden. Ein Branch refenziert einen Commit.
+        
+        \subsection*{Vorbereitung}
+        Ein Repository, mit welchem du die nachfolgenden Operationen ausführen kannst,
+        erhälst du über \textsf{init} oder \textsf{clone}.
+        \begin{itemize}
+            \item \texttt{git init} | erstellt lokales Repository im aktuellen Verzeichnis;
+            Remote muss ggf. gesetzt werden
+            \item \texttt{git clone <URL>} | cloned Remote-Repository in aktuelles Verzeichnis;
+            Remote muss ist automatisch gesetzt
+        \end{itemize}
+
+        Zur Zuordnung deiner Commits solltest du deinen Namen und deine E-Mail-Adresse angeben.
+
+        \begin{itemize}
+            \item \texttt{git config --global user.name "<name>"} | setzt global den Namen
+            \item \texttt{git config --global user.email "<mail>"} | setzt global die E-Mail-Adresse
+        \end{itemize}
+
+
+        \begin{itemize}
+            \item \texttt{git push --set-upstream origin <branch>} |
+            setzt \textsf{origin/<branch>} als Remote für lokales Repository
+            
+        \end{itemize}
+        \subsection*{Staging}
+        \begin{itemize}
+            \item \texttt{git status} | zeigt Änderungen an
+            \item \texttt{git add <files>} | \textit{staged} gegebene Dateien
+            \item \texttt{git commit -m "<message>"} | \textit{commited} \textit{staged} Dateien mit gegebener Nachricht 
+            \item \texttt{git rm <files>} | \textit{staged} Lösch-Operation und entfernt Datei
+            \item \texttt{git reset <files>} | \textit{unstaged} gegebene Dateien;
+            Änderungen bleiben erhalten
+        \end{itemize}
+        \subsection*{Branching und Rebasing}
+        \begin{itemize}
+            \item \texttt{git branch} | listet Branches auf;
+            aktueller Branch: \textsf{*}
+            \item \texttt{git branch <name>} | leitet Branch vom aktuellen Branch mit gegebenem Namen ab
+            \item \texttt{git checkout <commit>} | wechselt zu Commit
+            \item \texttt{git checkout <branch>} | merged Branch in aktuellen
+        \end{itemize}
+    \end{minipage}%
+    \begin{minipage}[t]{.025\textwidth}
+        \hfill
+    \end{minipage}%
+    \begin{minipage}[t]{.475\textwidth}
+        \subsection*{Zusammenarbeit}
+        \begin{itemize}
+        
+            \item \texttt{git push} |
+            schickt lokale Commits an Remote
+            \item \texttt{git fetch} | lädt Änderungen von Remote,
+            \textit{ohne} diese mit lokalen Branches zu mergen
+            \item \texttt{git pull} | lädt Änderungen von Remote
+            \textit{und} merged Änderungen für aktuellen Branch
+        \end{itemize}
+
+        \subsection*{Stashing}
+
+        Änderungen, die \textit{noch} nicht commited werden sollen, können auf dem Stash-Stack zwischengespeichert und danach (auch auf anderem Branch) angewendet werden.
+
+        \begin{itemize}
+            \item \texttt{git stash} | legt Changes auf Stack
+            \item \texttt{git stash list} | listet Stack auf
+            \item \texttt{git stash pop} | wendet letzte Changes auf Stash an
+        \end{itemize}
+
+        \subsection*{Weiteres}
+        \begin{itemize}
+            \item \texttt{git remote add <name> <URL>} | fügt Remote unter gegebenem Namen hinzu;
+            Standard-Name ist \texttt{origin};
+            nicht notwendig bei \texttt{git clone}
+            \item \texttt{git remove -v}\\Anzeigen der Remotes
+        \end{itemize}
+    \end{minipage}
+
+
+    
+\end{document}
