@@ -31,6 +31,8 @@
 - Submodules
 - Cherry-Pick
 - Tags
+- Rewriting History
+- Detached Head
 
 ### Workflows
 
