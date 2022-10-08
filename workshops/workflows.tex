@@ -1,0 +1,43 @@
+%! suppress = MissingImport
+\RequirePackage{import}
+\subimport{../common}{preamble}
+\subimport{../common}{packages}
+\begin{document}
+    \begin{frame}[c]
+        \centering
+        \Large
+        \textbf{Git Workflows}
+    \end{frame}
+
+    \section{Intro}\label{sec:intro}
+    \begin{frame}[c]
+        \slidehead
+        \vspace{-1em}
+        \large
+        \textbf{Das Heutige Programm}
+        \vspace{1em}
+        \tableofcontents[subsubsectionstyle=hide]
+    \end{frame}
+
+    \section{Was ist ein Git Workflow?}\label{sec:git-workflow}
+    \section{Wie arbeitet man im Team?}\label{sec:team}
+    \section{Best Practices}\label{sec:best-practices}
+    \section{Git Platforms}\label{sec:git-platforms}
+
+    \subsection{Git Recap}\label{subsec:git-recap}
+    \begin{frame}[c]
+        \slidehead
+        \vspace{-1em}
+        \centering
+        \large
+        \textbf{Das Git-VCS}
+        \vspace{2em}
+        \begin{itemize}[<+->]
+            \item Dezentrales Version Control System
+            \item Ein \textbf{Commit} ist ein Zeiger auf einen Zustand vom Repository
+            \item Eine \textbf{Branch} ist ein Zeiger auf einen \textbf{Commit}
+        \end{itemize}
+    \end{frame}
+
+    \subimport{../chapters}{ci-cd}
+\end{document}
