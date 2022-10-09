@@ -6,7 +6,7 @@
     \begin{frame}[c]
         \centering
         \Large
-        \textbf{Git Workflows}
+        \textbf{Effective Git Workflows, Teamwork \& Best Practices}
     \end{frame}
 
     \section{Intro}\label{sec:intro}
@@ -18,11 +18,6 @@
         \vspace{1em}
         \tableofcontents[subsubsectionstyle=hide]
     \end{frame}
-
-    \section{Was ist ein Git Workflow?}\label{sec:git-workflow}
-    \section{Wie arbeitet man im Team?}\label{sec:team}
-    \section{Best Practices}\label{sec:best-practices}
-    \section{Git Platforms}\label{sec:git-platforms}
 
     \subsection{Git Recap}\label{subsec:git-recap}
     \begin{frame}[c]
@@ -38,6 +33,12 @@
             \item Eine \textbf{Branch} ist ein Zeiger auf einen \textbf{Commit}
         \end{itemize}
     \end{frame}
+
+    \subimport{../chapters/workflows}{intro}
+    \subimport{../chapters/workflows}{feature-branch}
+    \section{Wie arbeitet man im Team?}\label{sec:team}
+    \section{Best Practices}\label{sec:best-practices}
+    \section{Git Platforms}\label{sec:git-platforms}
 
     \subimport{../chapters}{ci-cd}
 \end{document}

@@ -1,0 +1,34 @@
+\section{Git Workflows}\label{sec:git-workflows}
+\begin{frame}[c]
+    \centering
+    \Large
+    \textbf{Git Workflows}
+    \vspace{2em}
+    \linebreak
+    \begin{tikzpicture}
+        \node[commit] at (0, 0)(a){A1A1A1};
+        \node[commit] at (4, 0) (b){B2B2B2};
+        \node[commit] at (4, -2) (c){C3C3C3};
+        \node[branch] at (8, 0) (master){master};
+        \node[branch] at (8, -2) (feature){feature};
+        \draw[parent] (b) to (a);
+        \draw[parent] (c.west) to (a.east);
+        \draw[ref-arc] (master) to (b);
+        \draw[ref-arc] (feature) to (c);
+        \draw[parent, double] (feature) to (master){???};
+    \end{tikzpicture}
+\end{frame}
+
+\begin{frame}[c]
+    \slidehead
+    \vspace{-1em}
+    \centering
+    \large
+    \textbf{Was ist ein Git Workflow?}
+    \vspace{2em}
+    \begin{itemize}[<+->]
+        \item Dezentrales Version Control System
+        \item Ein \textbf{Commit} ist ein Zeiger auf einen Zustand vom Repository
+        \item Eine \textbf{Branch} ist ein Zeiger auf einen \textbf{Commit}
+    \end{itemize}
+\end{frame}

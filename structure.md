@@ -34,7 +34,12 @@
 - Rewriting History
 - Detached Head
 
-### Workflows
+### Effektive Git Workflows, Teamarbeit \& Best Practices
+
+Du kennst die Grundlagen von Git und würdest gerne wissen, wie man die sinnvoll einsetzen kann?
+In diesem Workshop lernst du, wie du mit Git effektiv arbeiten kannst - alleine oder im Team.
+Wir werden uns mit den verschiedenen Workflows beschäftigen und die Vor- und Nachteile der einzelnen Ansätze kennenlernen.
+Außerdem werden wir uns mit den verschiedenen Werkzeugen auseinandersetzten, die Git bietet, um die Arbeit im Team zu vereinfachen.
 
 - Best Practices
   - Commit Early, Commit Often
