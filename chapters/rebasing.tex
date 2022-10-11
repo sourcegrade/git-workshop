@@ -1,0 +1,38 @@
+\section{Rebasing}\label{sec:rebasing}
+
+\begin{frame}
+    \slidehead
+    \centering
+    \vspace{1em}
+    \begin{tikzpicture}
+        % 1 # create c1
+        \node<1->[commit](c1){c1c1c} node[left=1em of c1]{$\dots$};
+        % 1 # create master 1
+        \node<1>[branch, right=2em of c1](m1){master};
+        \draw<1>[parent] (m1) to (c1);
+        % 1 # create c2
+        \node<1-2>[commit, below=1em of m1](c2){c2c2c};
+        \draw<1-2>[parent] (c2.west) to (c1.east);
+        % 1 # create feature
+        \node<1-2>[branch, right=2em of c2](fa1){feature};
+        \draw<1-2>[parent] (fa1) to (c2);
+        % 2 # create c3
+        \node<2->[commit, right=2em of c1](c2){c3c3c};
+        \draw<2->[parent] (c2.west) to (c1.east);
+        % 2 # create master 2
+        \node<2->[branch, right=2em of c3](m1){master};
+        \draw<2->[parent] (m1) to (c3);
+        % 3 # create c2
+        \node<3->[commit, below=1em of m1](c2){c2c2c};
+        \draw<3->[parent] (c2.west) to (c3.east);
+        % 3 # create feature
+        \node<3->[branch, right=2em of c2](fa1){feature};
+        \draw<3->[parent] (fa1) to (c2);
+    \end{tikzpicture}
+    \vspace{1em}
+    \begin{itemize}
+        \item<2-> neuer Commit \texttt{c3c3c} auf \texttt{master}-branch
+        \item<2-> Annahme: Commit \texttt{c3c3c} ist zur Weiterarbeit auf \texttt{feature}-Branch nötig
+        \item<3-> \textbf{Rebase} ändert Base des ersten Commits auf \texttt{feature}-Branch
+    \end{itemize}
+\end{frame}

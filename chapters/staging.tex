@@ -1,0 +1,26 @@
+\section{Staging}\label{sec:staging}
+
+\begin{frame}[c]
+    \slidehead
+    \center
+    \begin{tikzpicture}
+        \node[node_inactive] (untracked) {untracked};
+        \node[node_inactive, below=2.5em of untracked] (staged) {staged};
+        \node[node_inactive, below=2.5em of staged] (unmodified) {unmodified};
+        \node[node_inactive, below=2.5em of unmodified] (modified) {modified};
+        \draw[parent-inactive] (untracked.south) -- (staged.north) node[right, pos=0.5] {\texttt{git add}};
+        \draw[parent-inactive] (staged.south) -- (unmodified.north) node[right, pos=0.5] {\texttt{git commit}};
+        \draw[parent-inactive] (unmodified.south) -- (modified.north) node[right, pos=.5] {Ändern};
+        \draw[parent-inactive] (modified) to[out=180, in=180, looseness=1.5] node[left, pos=.5] {Ändern} (staged);
+        \draw[parent-inactive] (modified) to[out=0,in=0, looseness=1.5] node[right, pos=.5] {\texttt{git rm}} (untracked);
+        \node<7,2,3,6>[node] (untracked) {untracked};
+        \node<7,3,4,6>[node, below=2.5em of untracked] (staged) {staged};
+        \node<7,4,5>[node, below=2.5em of staged] (unmodified) {unmodified};
+        \node<7,5,6>[node, below=2.5em of unmodified] (modified) {modified};
+        \draw<7,3>[parent] (untracked.south) -- (staged.north) node[right, pos=0.5] {\texttt{git add}};
+        \draw<7,4>[parent] (staged.south) -- (unmodified.north) node[right, pos=0.5] {\texttt{git commit}};
+        \draw<7,5>[parent] (unmodified.south) -- (modified.north) node[right, pos=.5] {Ändern};
+        \draw<7,6>[parent] (modified) to[out=180, in=180, looseness=1.5] node[left, pos=.5] {Ändern} (staged);
+        \draw<7,6>[parent] (modified) to[out=0,in=0, looseness=1.5] node[right, pos=.5] {\texttt{git rm}} (untracked);
+    \end{tikzpicture}
+\end{frame}

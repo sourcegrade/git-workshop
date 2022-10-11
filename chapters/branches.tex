@@ -1,0 +1,40 @@
+\section{Branches}\label{sec:branches}
+
+\begin{frame}[c]
+    \slidehead
+    \centering
+    \begin{tikzpicture}
+        % state 1
+        \node<1->[commit](c0){c0c0c};
+        \node<1->[commit, right=2em of c0](c1){c1c1c};
+        \node<1-2>[branch, right=2em of c1](bm1){master};
+        \draw<1->[parent] (c1) to (c0);
+        \draw<1-2>[parent] (bm1) to (c1);
+        % state 2
+        \node<2-3>[branch, below=1em of bm1](fa1){feature};
+        \draw<2-3>[parent] (fa1.west) to (c1.east);
+        % state 3
+        \node<3->[commit, right=2em of c1](c2){c2c2c};
+        \node<3->[branch, right=2em of c2](bm2){master};
+        \draw<3->[parent] (c2) to (c1);
+        \draw<3->[parent] (bm2) to (c2);
+        % state 4
+        \node<4->[commit, below=1em of c2](c3){c3c3c};
+        \node<4>[branch, right=2em of c3](fa2){feature};
+        \node<4->[branch, right=2em of c2](bm3){master};
+        \draw<4->[parent] (c3.west) to (c1.east);
+        \draw<4->[parent] (fa2) to (c3);
+        % state 5
+        \node<5->[commit, right=2em of c3](c4){c4c4c};
+        \node<5->[branch, right=2em of c4](fa3){feature};
+        \draw<5->[parent] (fa3) to (c4);
+    \end{tikzpicture}
+    \vspace{1em}\par
+    \begin{enumerate}
+        \item<1->{\texttt{master}-Branch verweist auf Commit \texttt{c1c1c}}
+        \item<2->{\texttt{feature}-Branch wird von \texttt{master}-Branch abgeleitet}
+        \item<3->{neuer Commit \texttt{c2c2c} in \texttt{master}-Branch}
+        \item<4->{neuer Commit \texttt{c3c3c} in \texttt{feature}-Branch}
+        \item<5->{neuer Commit \texttt{c4c4c} in \texttt{feature}-Branch}
+    \end{enumerate}
+\end{frame}

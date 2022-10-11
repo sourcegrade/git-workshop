@@ -1,0 +1,155 @@
+\section{Merging}\label{sec:merging}
+
+\begin{frame}[c]
+    \centering
+    \Large
+    \textbf{Wie gelangen die Commits von einen Branch in einen anderen?}
+\end{frame}
+
+\subsection*{Fast-Forward Merge}
+
+\begin{frame}[c]
+    \slidehead
+    \centering
+    \begin{tikzpicture}
+        % create c1
+        \node<1->[commit](c1){c1c1c} node[left=1em of c1]{$\dots$};
+        % create master
+        \node<1-1>[branch, right=2em of c1](m1){master};
+        \draw<1-1>[parent] (m1) to (c1);
+        % create c2
+        \node<1->[commit, below=1em of m1](c2){c2c2c};
+        \draw<1->[parent] (c2.west) to (c1.east);
+        % create c3
+        \node<1->[commit, right=2em of c2](c3){c3c3c};
+        \draw<1->[parent] (c3) to (c2);
+        % create branch feature
+        \node<1->[branch, right=2em of c3](fa1){feature};
+        \draw<1->[parent] (fa1) to (c3);
+        % 2 # create master
+        \node<2->[branch, above=1em of fa1](m2){master};
+        \draw<2->[parent] (m2.west) to (c3.east);
+    \end{tikzpicture}
+    \vspace{2em}
+    \begin{itemize}
+        \item \textbf{Fast-Forward Merge}
+        \item möglich, wenn zu mergende Branches \textit{nicht} divergiert
+        \item<2-> lässt \texttt{master}-Branch \textit{direkt} auf Commit von \texttt{feature}-Branch zeigen
+        \item<2-> \textit{kein} Merge-Commit notwendig (gleich mehr)
+        \item<3-> einfachster Fall, aber seltener
+    \end{itemize}
+\end{frame}
+
+\subsection*{Normalfall}
+
+\begin{frame}
+    \slidehead
+    \centering
+    \vspace{2em}\par
+    \begin{tikzpicture}
+        % create c1
+        \node<1->[commit](c1){c1c1c} node[left=1em of c1]{$\dots$};
+        % create c3
+        \node<1->[commit, right=2em of c1](c3){c3c3c};
+        \draw<1->[parent] (c3) to (c1);
+        % create master 1
+        \node<1>[branch, right=2em of c3](m1){master};
+        \draw<1>[parent] (m1) to (c3);
+        % create c2
+        \node<1->[commit, below=1em of c3](c2){c2c2c};
+        \draw<1->[parent] (c2.west) to (c1.east);
+        % create c4
+        \node<1->[commit, right=2em of c2](c4){c4c4c};
+        \draw<1->[parent] (c4) to (c2);
+        % create branch feature
+        \node<1->[branch, right=2em of c4](fa1){feature};
+        \draw<1->[parent] (fa1) to (c4);
+        % create c5
+        \node<2->[mergecommit, above=1em of fa1](c5){c5c5c};
+        \draw<2->[parent] (c5) to (c3);
+        \draw<2->[parent] (c5.west) to (c4.east);
+        % create master 2
+        \node<2->[branch, right=2em of c5](m){master};
+        \draw<2->[parent] (m) to (c5);
+
+    \end{tikzpicture}
+    \vspace{2em}
+    \begin{itemize}
+        \item \textbf{Normalfall}
+        \item \texttt{master}-Branch und \texttt{feature}-Branch sind divergiert
+        \item<2-> Commit \texttt{c5c5c} ist Merge-Commit aus \texttt{master}- und \texttt{feature}-Branch
+    \end{itemize}
+\end{frame}
+
+
+\subsection*{Normalfall mit Squash}
+
+\begin{frame}
+    \slidehead
+    \centering
+
+    \begin{tikzpicture}
+        % create c1
+        \node<1->[commit](c1){c1c1c} node[left=1em of c1]{$\dots$};
+        % create c3
+        \node<1->[commit, right=2em of c1](c3){c3c3c};
+        \draw<1->[parent] (c3) to (c1);
+        % create master 1
+        \node<1>[branch, right=2em of c3](m1){master};
+        \draw<1>[parent] (m1) to (c3);
+        % create c2
+        \node<1>[commit, below=2em of c3](c2){c2c2c};
+        \draw<1>[parent] (c2.west) to (c1.east);
+        % create c4
+        \node<1>[commit, right=2em of c2](c4){c4c4c};
+        \draw<1>[parent] (c4) to (c2);
+        % create branch feature
+        \node<1>[branch, right=2em of c4](fa1){feature};
+        \draw<1>[parent] (fa1) to (c4);
+        % 2 # create c5
+        \node<2->[mergecommit, below right=1.5em and 2em of c1, minimum width=14em](c5){c5c5c};
+        \draw<2->[parent] (c5.west) to (c1.east);
+        % 2 # create c2
+        \node<2->[commit, below right=5em and 2em of c1](c2){c2c2c};
+        \draw<2->[parent] (c2.west) to (c1.east);
+        % 2 # create c4
+        \node<2->[commit, right=2em of c2](c4){c4c4c};
+        \draw<2->[parent] (c4) to (c2);
+        % 2 # create c6
+        \node<2->[mergecommit, right=10em of c3](c6){c6c6c};
+        \draw<2->[parent] (c6) to (c3);
+        \draw<2->[parent] (c6.west) to (c5.east);
+        % 2 # create branch feature
+        \node<2->[branch, right=2em of c4](fa1){feature};
+        \draw<2->[parent] (fa1) to (c4);
+        % 2 # create branch master
+        \node<2->[branch, right=2em of c6](m){master};
+        \draw<2->[parent] (m) to (c6);
+        % create meta
+        % \draw<2->[parent, dotted] ([yshift=1.5em] c2.north) to (c2.north);
+        \draw<2->[ref-arc] ([yshift=1.5em] c4.north) to (c4.north);
+    \end{tikzpicture}
+    \vspace{1em}
+    \begin{itemize}
+        \item \textbf{Normalfall mit Squash} (optional)
+        \item<2-> Commit \texttt{c5c5c} ist Zusammenfassung des \texttt{feature}-Branches
+        \item<2-> Commits \texttt{c2c2c} und \texttt{c4c4c} in Commit \texttt{c5c5c} nicht mehr sichtbar
+    \end{itemize}
+\end{frame}
+
+\subsection*{Merge Conflicts}
+\begin{frame}[fragile, c]
+    \slidehead
+    \vspace{1em}
+    \begin{codeBlock}[]{minted language=java}
+        public static void mul(int a, int b) {
+            <<<<<<< HEAD:Calculator.java
+            return a * b;
+            =======
+            for (int i = 0; i < b; i++) {
+                a += a;
+            }
+            >>>>>>> feature:Calculator.java
+        }
+    \end{codeBlock}
+\end{frame}
