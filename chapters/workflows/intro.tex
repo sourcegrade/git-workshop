@@ -1,4 +1,6 @@
 %! suppress = MissingImport
+
+
 \section{Git Workflows}\label{sec:git-workflows}
 \begin{frame}[c]
     \centering
@@ -20,6 +22,7 @@
     \end{tikzpicture}
 \end{frame}
 
+\subsection{Was ist ein Git Workflow?}\label{subsec:was-ist-ein-git-workflow?}
 \begin{frame}[c]
     \slidehead
     \vspace{-1em}
@@ -37,4 +40,43 @@
             \href{https://www.atlassian.com/de/git/tutorials/comparing-workflows}{Atlassian}
         }
     }
+\end{frame}
+
+\begin{frame}[c]
+    \centering
+    \large
+    \textbf{Wie sieht ein erfolgreicher Git Workflow aus?}
+\end{frame}
+
+\subsection{Wie sieht ein erfolgreicher Git Workflow aus?}\label{subsec:wie-sieht-ein-erfolgreicher-git-workflow-aus?}
+\begin{frame}[c]
+    \slidehead
+    \large
+    \textbf{Bewertungskriterien}
+    \begin{enumerate}
+        \item<2-> Wie skaliert der Workflow?
+        \item<3-> Kann man Fehler einfach rückgängig machen?
+        \item<4-> Erzeugt dieser Workflow eine neue unnötige, kognitive Überlastung für das Team?
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[c]
+    \begin{columns}[c]
+        \begin{column}{.5\textwidth}
+            \centering
+            \includesvg{../../pictures/bob}
+        \end{column}
+        \begin{column}{.5\textwidth}
+            \Large
+            \textbf{Meet Bob}
+            \only<2->{
+                \begin{itemize}
+                \item<2-> Bob ist ein Softwareentwickler
+                \item<3-> Bob probiert verschiedene Git Workflows aus
+                \item<4-> Bob möchte einen Workflow finden, der zu ihm passt
+                \item<5-> Bob arbeitet alleine
+                \end{itemize}
+            }
+        \end{column}
+    \end{columns}
 \end{frame}
