@@ -1,3 +1,4 @@
+%! suppress = MissingImport
 \section{Git Workflows}\label{sec:git-workflows}
 \begin{frame}[c]
     \centering
@@ -26,9 +27,14 @@
     \large
     \textbf{Was ist ein Git Workflow?}
     \vspace{2em}
-    \begin{itemize}[<+->]
-        \item Dezentrales Version Control System
-        \item Ein \textbf{Commit} ist ein Zeiger auf einen Zustand vom Repository
-        \item Eine \textbf{Branch} ist ein Zeiger auf einen \textbf{Commit}
-    \end{itemize}
+    \only<2->{
+        \linebreak
+        \textit{Ein Git Workflow ist eine Rezeptur oder Empfehlung zur Verwendung von Git,
+            die eine konsistente und produktive Arbeitsweise ermöglichen soll}
+        \vspace{2em}
+        \linebreak
+        \textbf{
+            \href{https://www.atlassian.com/de/git/tutorials/comparing-workflows}{Atlassian}
+        }
+    }
 \end{frame}
