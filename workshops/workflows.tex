@@ -1,22 +1,36 @@
+%! suppress = FileNotFound
 %! suppress = MissingImport
 \RequirePackage{import}
 \subimport{../common}{preamble}
 \subimport{../common}{packages}
+\subimport{../common}{vars}
 \begin{document}
     \begin{frame}[c]
         \centering
         \Large
-        \textbf{Effective Git Workflows, Teamwork \& Best Practices}
+        \textbf{Effektive Git Workflows, Teamarbeit \& Best Practices}
     \end{frame}
+
 
     \section{Intro}\label{sec:intro}
     \begin{frame}[c]
         \slidehead
         \vspace{-1em}
+        \centering
         \large
         \textbf{Das Heutige Programm}
         \vspace{1em}
-        \tableofcontents[subsubsectionstyle=hide]
+        \begin{itemize}[<+->]
+            \item Quick Recap
+            \item Git Workflows \& Practices
+            \begin{itemize}
+                \item Centralized Workflow
+                \item Feature Branch Workflow
+                \item Kurzer Einblick in andere Workflows
+            \end{itemize}
+            \item CI/CD
+            \item Git Platforms
+        \end{itemize}
     \end{frame}
 
     \subsection{Git Recap}\label{subsec:git-recap}
@@ -26,7 +40,7 @@
         \centering
         \large
         \textbf{Das Git-VCS}
-        \vspace{2em}
+        \vspace{1em}
         \begin{itemize}[<+->]
             \item Dezentrales Version Control System
             \item Ein \textbf{Commit} ist ein Zeiger auf einen Zustand vom Repository
@@ -34,10 +48,33 @@
         \end{itemize}
     \end{frame}
 
+    \begin{frame}[c]
+        \slidehead
+        \vspace{-1em}
+        \centering
+        \large
+        \textbf{Git Operations}
+        \vspace{2em}
+        \begin{description}[<+->][labelwidth=\widthof{\bfseries The longest label}]
+            \item [git merge] Kombiniert zwei Branches
+            \item [git squash merge] Merged nur den letzten Zustand der Branch
+            \item [git rebase] Fügt neue commits hinter den commits der aktuellen Branch
+            \item [git cherry-pick] Kopiert einen commit von einer anderen Branch
+            \item [git revert] Erstellt einen Commit der einen anderen Commit rückgängig macht
+        \end{description}
+    \end{frame}
+
     \subimport{../chapters/workflows}{intro}
+    \subimport{../chapters/workflows}{centralized}
     \subimport{../chapters/workflows}{feature-branch}
+
+
     \section{Wie arbeitet man im Team?}\label{sec:team}
+
+
     \section{Best Practices}\label{sec:best-practices}
+
+
     \section{Git Platforms}\label{sec:git-platforms}
 
     \subimport{../chapters}{ci-cd}

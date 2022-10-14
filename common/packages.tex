@@ -34,6 +34,18 @@
 \usetikzlibrary{3d, angles, animations, arrows, arrows.meta, arrows.spaced, automata, babel, backgrounds, bending, calc, calendar, chains, circuits.ee.IEC, circuits.logic.CDH, circuits.logic.IEC, circuits.logic.US, datavisualization, datavisualization.formats.functions, datavisualization.polar, decorations, decorations.footprints, decorations.fractals, decorations.markings, decorations.pathmorphing, decorations.pathreplacing, decorations.shapes, decorations.text, er, external, fadings, fit, fixedpointarithmetic, folding, fpu, graphs, graphs.standard, intersections, lindenmayersystems, math, matrix, patterns, patterns.meta, perspective, petri, plotmarks, positioning, quotes, rdf, scopes, shadings, shadows, shadows.blur, shapes, shapes.arrows, shapes.callouts, shapes.gates.logic.IEC, shapes.gates.logic.US, shapes.geometric, shapes.misc, shapes.multipart, shapes.symbols, spy, svg.path, through, tikzmark, topaths, trees, turtle, views}
 
 \tikzset{
+    tiny-commit/.style={
+        circle,
+        fill=TUDa-1a,
+        minimum width=3em,
+        minimum height=3em,
+        very thick,
+        draw=black!70,
+    },
+    tiny-merge-commit/.style={
+        tiny-commit,
+        fill=TUDa-1c!50,
+    },
     commit/.style={
         rectangle,
         text=white,
@@ -53,6 +65,7 @@
     },
     branch/.style={
         ref,
+        minimum width=8em,
         fill=TUDa-4c
     },
     head/.style={
@@ -79,3 +92,32 @@
         fill=TUDa-0a,
     },
 }
+\newtcbox{\bashcommand}[1][]{
+    colback=black!80,
+    hbox,
+    colupper=white,
+    colframe=TUDa-2c!75!black,
+    before upper=\textcolor{TUDa-1a}{\small\ttfamily\bfseries \$ },
+    fontupper=\ttfamily,
+    #1
+}
+
+\newtcbox{\bashcommandbob}[1][]{
+    colback=black!80,
+    hbox,
+    colupper=white,
+    colframe=TUDa-2c!75!black,
+    before upper=\textcolor{TUDa-8a}{bob \small\ttfamily\bfseries \$ },
+    fontupper=\ttfamily,
+    #1
+}
+\newtcbox{\bashcommandalice}[1][]{
+    colback=black!80,
+    hbox,
+    colupper=white,
+    colframe=TUDa-2c!75!black,
+    before upper=\textcolor{TUDa-10a}{alice \small\ttfamily\bfseries \$ },
+    fontupper=\ttfamily,
+    #1
+}
+
