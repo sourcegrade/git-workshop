@@ -1,0 +1,95 @@
+\section{GitHub Flow}\label{sec:github-flow}
+\begin{frame}[c]
+    \centering
+    \Large
+    \textbf{GitHub Flow}
+\end{frame}
+
+\subsection{Der Workflow}\label{subsec:der-workflow}
+\begin{frame}[c]
+    \slidehead
+    \centering
+    \large
+    \textbf{GitHub Flow}
+    \vspace{1em}
+    \begin{enumerate}[<+->]
+        \item \textbf{Feature Branch von Master abbranchen}
+        \item \textbf{Feature implementieren}
+        \item \textbf{Pull Request erstellen}
+        \item \textbf{Pull Request reviewen}
+        \item \textbf{Pull Request mergen}
+        \item \textbf{Feature Branch löschen}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[c]
+    \centering
+    \Large
+    \textbf{Live Demo}
+\end{frame}
+
+\subsection{Normaler Merge vs Squash Merge}\label{subsec:normaler-merge-vs-squash-merge}
+\begin{frame}[c]
+    \slidehead
+    \centering
+    \begin{tikzpicture}
+        \node[tiny-commit] at (0, 0)(a){};
+        \node[tiny-commit] at (2, 0) (b){};
+        \node[tiny-commit] at (4, 0) (c){};
+        \node<4->[tiny-commit] at (6, 0) (d){};
+        \node<5>[tiny-merge-commit, fill=TUDa-8a!50!TUDa-1c] at (10, 0) (f){};
+        \node<6>[tiny-commit, fill=TUDa-8a!50] at (10, 0) (f){};
+        \node<2->[tiny-commit, fill=TUDa-8a] at (6, -1) (feature/a/1){};
+        \node<3->[tiny-commit, fill=TUDa-8a] at (8, -1) (feature/a/2){};
+        \node[branch] at (13, 0) (master){master};
+        \node<2->[branch] at (13, -1) (feature/a){feature/a};
+        \draw[parent] (b) to (a);
+        \draw[parent] (c) to (b);
+        \draw<4->[parent] (d) to (c);
+        \draw<2->[parent] (feature/a/1) to (c);
+        \draw<3->[parent] (feature/a/2) to (feature/a/1);
+        \draw<5->[parent] (f) to (d);
+        \draw<5>[parent] (f) to (feature/a/2);
+        \draw<1-3>[ref-arc] (master) to (c);
+        \draw<4>[ref-arc] (master) to (d);
+        \draw<5->[ref-arc] (master) to (f);
+        \draw<2>[ref-arc] (feature/a) to (feature/a/1);
+        \draw<3->[ref-arc] (feature/a) to (feature/a/2);
+    \end{tikzpicture}
+
+    \vspace*{\fill}
+
+    \begin{onlyenv}<2>
+        \bashcommandbob{git checkout -b feature/a \&\& git commit}
+    \end{onlyenv}
+    \begin{onlyenv}<3>
+        \bashcommandbob{git commit}
+    \end{onlyenv}
+    \begin{onlyenv}<5>
+        \bashcommandbob{git checkout master \&\& git merge feature/a}
+    \end{onlyenv}
+    \begin{onlyenv}<6>
+        \bashcommandbob{git checkout master \&\& git merge \textminus\textminus squash feature/a}
+    \end{onlyenv}
+\end{frame}
+
+\subsection{Final Review}\label{subsec:final-review}
+\begin{frame}[c]
+    \slidehead
+    \centering
+    \Large
+    \textbf{Final Review}
+\end{frame}
+
+\begin{frame}[c]
+    \slidehead
+    \large
+    \textbf{Bewertungskriterien}
+    \normalsize
+    \begin{enumerate}
+        \item<2-> Wie skaliert der Workflow? \only<3->{\hfill\textbf{slight improvement}}
+        \item<4-> Können Bugs/Fehler einfach in den Master-Branch gelangen? \only<5->{\hfill\textbf{slight improvement}}
+        \item<6-> Kann man Fehler einfach rückgängig machen? \only<7->{\hfill\textbf{geht}}
+        \item<8-> Erzeugt dieser Workflow eine neue unnötige, kognitive Überlastung für das Team? \only<9->{\hfill\textbf{it depends}}
+    \end{enumerate}
+\end{frame}

@@ -26,10 +26,11 @@
             \begin{itemize}
                 \item Centralized Workflow
                 \item Feature Branch Workflow
+                \item GitHub Flow
                 \item Kurzer Einblick in andere Workflows
             \end{itemize}
-            \item CI/CD
             \item Git Platforms
+            \item CI/CD
         \end{itemize}
     \end{frame}
 
@@ -64,18 +65,29 @@
         \end{description}
     \end{frame}
 
-%    \subimport{../chapters/workflows}{intro}
-%    \subimport{../chapters/workflows}{centralized}
+    \subimport{../chapters/workflows}{intro}
+    \subimport{../chapters/workflows}{centralized}
     \subimport{../chapters/workflows}{feature-branch}
-
-
-    \section{Wie arbeitet man im Team?}\label{sec:team}
-
-
-    \section{Best Practices}\label{sec:best-practices}
-
-
-    \section{Git Platforms}\label{sec:git-platforms}
-
+    \subimport{../chapters/workflows}{github-flow}
+    \subimport{../chapters/workflows}{git-flow}
+    \subimport{../chapters}{platforms}
     \subimport{../chapters}{ci-cd}
+
+
+    \section{Nützliche Links}\label{sec:links}
+    \begin{frame}[c]
+        \slidehead
+        \vspace{-1em}
+        \centering
+        \large
+        \textbf{Nützliche Links}
+        \vspace{1em}
+        \begin{itemize}[<+->]
+            \item \href{https://git-scm.com/book/en/v2}{Git Book}
+            \item \href{https://www.atlassian.com/de/git/tutorials}{Atlassian Git Tutorials}
+            \item \href{https://www.atlassian.com/de/git/tutorials/comparing-workflows}{Atlassian Git Workflows}
+            \item \href{https://docs.github.com/en/get-started/quickstart/github-flow}{GitHub Flow}
+            \item \href{https://nvie.com/posts/a-successful-git-branching-model/}{Git Flow}
+        \end{itemize}
+    \end{frame}
 \end{document}

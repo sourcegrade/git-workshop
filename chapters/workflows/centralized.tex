@@ -8,6 +8,19 @@
     \textbf{Centralized Workflow}
 \end{frame}
 
+\subsection{Der Workflow}\label{subsec:der-workflow}
+\begin{frame}[c]
+    \slidehead
+    \centering
+    \large
+    \textbf{Centralized Workflow}
+    \vspace{1em}
+    \begin{enumerate}[<+->]
+        \item \textbf{Commit} auf den \textbf{Master}
+        \item \textbf{Push} auf den \textbf{Master}
+    \end{enumerate}
+\end{frame}
+
 \subsection{Normalfall}\label{subsec:normalfall}
 \begin{frame}[c, fragile]
     \slidehead
@@ -91,8 +104,9 @@
     \normalsize
     \begin{enumerate}
         \item<2-> Wie skaliert der Workflow? \only<3->{\hfill\textbf{unklar}}
-        \item<4-> Kann man Fehler einfach rückgängig machen? \only<5->{\hfill\textbf{geht}}
-        \item<6-> Erzeugt dieser Workflow eine neue unnötige, kognitive Überlastung für das Team? \only<7->{\hfill\textbf{nein}}
+        \item<4-> Können Bugs/Fehler einfach in den Master-Branch gelangen? \only<5->{\hfill\textbf{ja}}
+        \item<6-> Kann man Fehler einfach rückgängig machen? \only<7->{\hfill\textbf{geht}}
+        \item<8-> Erzeugt dieser Workflow eine neue unnötige, kognitive Überlastung für das Team? \only<9->{\hfill\textbf{nein}}
     \end{enumerate}
 \end{frame}
 
@@ -339,7 +353,7 @@
     \slidehead
     \centering
     \Large
-    \bashcommand{git config --global pull.ff only}
+    \bashcommand{git config \textminus\textminus global pull.ff only}
 \end{frame}
 
 \subsection{Final Review}\label{subsec:final-review}
@@ -357,7 +371,8 @@
     \normalsize
     \begin{enumerate}
         \item<2-> Wie skaliert der Workflow? \only<3->{\hfill\textbf{nicht gut}}
-        \item<4-> Kann man Fehler einfach rückgängig machen? \only<5->{\hfill\textbf{geht}}
-        \item<6-> Erzeugt dieser Workflow eine neue unnötige, kognitive Überlastung für das Team? \only<7->{\hfill\textbf{nein}}
+        \item<4-> Können Bugs/Fehler einfach in den Master-Branch gelangen? \only<5->{\hfill\textbf{ja}}
+        \item<6-> Kann man Fehler einfach rückgängig machen? \only<7->{\hfill\textbf{geht}}
+        \item<8-> Erzeugt dieser Workflow eine neue unnötige, kognitive Überlastung für das Team? \only<9->{\hfill\textbf{nein}}
     \end{enumerate}
 \end{frame}
