@@ -4,3 +4,36 @@
     \Large
     \textbf{Feature Branch Workflow}
 \end{frame}
+
+\begin{frame}[c]
+    \slidehead
+    \centering
+    \begin{tikzpicture}
+        \node[tiny-commit] at (0, 0)(a){};
+        \node[tiny-commit] at (2, 0) (b){};
+        \node[tiny-commit] at (4, 0) (c){};
+        \node<2-5>[tiny-commit, fill=TUDa-8a] at (6, -1) (feature/a/1){};
+        \node<3-6>[tiny-commit, fill=TUDa-10a] at (6, -2) (feature/b/1){};
+        \node<4->[tiny-commit] at (6, 0) (d){};
+        \node<5->[tiny-commit, fill=TUDa-8a!50] at (8, 0) (e){};
+        \node<7>[tiny-commit, fill=TUDa-10a] at (10, -2) (feature/b/1){};
+        \node<8>[tiny-commit, fill=TUDa-10a!50] at (10, 0) (f){};
+        \node[branch] at (13, 0) (master){master};
+        \node<2-5>[branch] at (13, -1) (feature/a){feature/a};
+        \node<3-7>[branch] at (13, -2) (feature/b){feature/b};
+        \draw[parent] (b) to (a);
+        \draw[parent] (c) to (b);
+        \draw<2-5>[parent] (feature/a/1) to (c);
+        \draw<3-6>[parent] (feature/b/1) to (c);
+        \draw<7>[parent] (feature/b/1) to (e);
+        \draw<4->[parent] (d) to (c);
+        \draw<5->[parent] (e) to (d);
+        \draw<8>[parent] (f) to (e);
+        \draw<-3>[ref-arc] (master) to (c);
+        \draw<4>[ref-arc] (master) to (d);
+        \draw<5-7>[ref-arc] (master) to (e);
+        \draw<8>[ref-arc] (master) to (f);
+        \draw<2-5>[ref-arc] (feature/a) to (feature/a/1);
+        \draw<3-7>[ref-arc] (feature/b) to (feature/b/1);
+    \end{tikzpicture}
+\end{frame}
