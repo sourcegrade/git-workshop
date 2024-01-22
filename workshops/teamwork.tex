@@ -1,0 +1,79 @@
+%! suppress = FileNotFound
+%! suppress = MissingImport
+\RequirePackage{import}
+\subimport{../common}{preamble}
+\subimport{../common}{packages}
+\subimport{../common}{vars}
+\begin{document}
+    \begin{frame}[c]
+        \centering
+        \Large
+        \textbf{Git Teamwork}
+    \end{frame}
+
+
+    \section{Intro}\label{sec:intro}
+    \begin{frame}[c]
+        \slidehead
+        \vspace{-1em}
+        \centering
+        \large
+        \textbf{Das Heutige Programm}
+        \vspace{1em}
+        \begin{itemize}
+            [<+->]
+            \item Quick Recap
+            \item Git Teamwork
+            \item CI/CD
+        \end{itemize}
+    \end{frame}
+
+    \subsection{Git Recap}\label{subsec:git-recap}
+    \begin{frame}[c]
+        \slidehead
+        \vspace{-1em}
+        \centering
+        \large
+        \textbf{Das Git-VCS}
+        \vspace{1em}
+        \begin{itemize}
+            [<+->]
+            \item Dezentrales Version Control System
+            \item Ein \textbf{Commit} ist ein Zeiger auf einen Zustand vom Repository
+            \item Eine \textbf{Branch} ist ein Zeiger auf einen \textbf{Commit}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[c]
+        \slidehead
+        \vspace{-1em}
+        \centering
+        \large
+        \textbf{Git Operations}
+        \vspace{2em}
+        \begin{description}
+            [<+->][labelwidth=\widthof{\bfseries The longest label}]
+            \item [git merge] Kombiniert zwei Branches
+            \item [git revert] Erstellt einen Commit der einen anderen Commit rückgängig macht
+        \end{description}
+    \end{frame}
+
+
+    \section{Nützliche Links}\label{sec:links}
+    \begin{frame}[c]
+        \slidehead
+        \vspace{-1em}
+        \centering
+        \large
+        \textbf{Nützliche Links}
+        \vspace{1em}
+        \begin{itemize}
+            [<+->]
+            \item \href{https://git-scm.com/book/en/v2}{Git Book}
+            \item \href{https://www.atlassian.com/de/git/tutorials}{Atlassian Git Tutorials}
+            \item \href{https://www.atlassian.com/de/git/tutorials/comparing-workflows}{Atlassian Git Workflows}
+            \item \href{https://docs.github.com/en/get-started/quickstart/github-flow}{GitHub Flow}
+            \item \href{https://nvie.com/posts/a-successful-git-branching-model/}{Git Flow}
+        \end{itemize}
+    \end{frame}
+\end{document}
