@@ -53,6 +53,7 @@ project {
 fun createBuild(buildGroup: String, buildName: String): BuildType {
     return object : BuildType() {
         init {
+            id("$buildGroup/$buildName")
             name = "$buildGroup/$buildName"
 
             configureVcs()
@@ -71,6 +72,8 @@ fun createBuild(buildGroup: String, buildName: String): BuildType {
                     dockerRunParameters = "--rm --interactive=false -v ${"$"}PWD:/data/ -w /data/$buildGroup"
                 }
             }
+
+            artifactRules = "+:$buildGroup/*.pdf"
         }
     }
 }
