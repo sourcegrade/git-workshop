@@ -53,7 +53,7 @@ project {
 fun createBuild(buildGroup: String, buildName: String): BuildType {
     return object : BuildType() {
         init {
-            id("$buildGroup/$buildName")
+            id("${buildGroup}_$buildName")
             name = "$buildGroup/$buildName"
 
             configureVcs()
