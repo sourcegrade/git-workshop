@@ -62,14 +62,15 @@ fun createBuild(buildGroup: String, buildName: String): BuildType {
                 configureBaseFeatures()
             }
 
+            requirements {
+                contains("env.AGENT_NAME", "tex")
+            }
+
             steps {
                 exec {
                     name = "Build $buildGroup/$buildName with AlgoTeX"
                     path = "latexmk"
                     arguments = "--shell-escape -synctex=1 -interaction=nonstopmode -file-line-error -lualatex $buildName.tex"
-
-                    dockerImage = "ghcr.io/tudalgo/algotex:latest"
-                    dockerRunParameters = "--rm --interactive=false -v ${"$"}PWD:/data/ -w /data/$buildGroup"
                 }
             }
 
