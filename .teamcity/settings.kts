@@ -71,7 +71,7 @@ fun createBuild(buildGroup: String, buildName: String): BuildType {
                     name = "Clean up old pdf"
                     workingDir = buildGroup
                     path = "rm"
-                    arguments = "$buildGroup-$buildName-RC*.pdf"
+                    arguments = "-f $buildGroup-$buildName-RC*.pdf"
                 }
                 exec {
                     name = "Build $buildGroup/$buildName with AlgoTeX"
