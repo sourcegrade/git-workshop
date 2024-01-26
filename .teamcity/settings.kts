@@ -71,7 +71,11 @@ fun createBuild(buildGroup: String, buildName: String): BuildType {
                     name = "Build $buildGroup/$buildName with AlgoTeX"
                     path = "latexmk"
                     workingDir = buildGroup
-                    arguments = "--shell-escape -synctex=1 -interaction=nonstopmode -file-line-error -lualatex $buildName.tex"
+                    arguments = """
+                        --shell-escape -synctex=1 -interaction=nonstopmode -file-line-error -lualatex
+                        -jobname=$buildGroup-$buildName-RC%env.BUILD_NUMBER%
+                        $buildName.tex
+                        """.trimIndent()
                 }
             }
 
