@@ -36,6 +36,7 @@ version = "2023.11"
 project {
 
     buildType(createBuild("workshops", "workflows"))
+    buildType(createBuild("git-days", "day-1"))
 
     features {
         githubIssues {

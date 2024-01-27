@@ -1,0 +1,150 @@
+\newcommand{\mytree}{
+    \begin{forest}
+        for tree={anchor=center}
+        [\faFolder, s sep=1em
+        [\faFolder[\faFolder][\faFolder][\faFile*]]
+        [\faFolder, before computing xy={s/.average={s}{siblings}}[\faFolder][\faFile*]]
+        [\faFolder[\faFile*][\faFile*][\faFile*]]
+        ]
+    \end{forest}
+}
+
+
+\section{Dateisysteme}\label{sec:dateisysteme}
+
+\begin{frame}[b]
+    \begin{center}
+        \includesvg[width = 8em]{../pictures/folder-tree-icon}
+    \end{center}
+    \vfill
+    \begin{flushleft}
+        \Huge
+        \textbf{Dateisysteme}
+    \end{flushleft}
+\end{frame}
+
+\begin{frame}[c]
+    \centering
+    \tikzmark{dolphin}\includesvg[width = 5em]{../pictures/dolphin-logo}
+    \hspace{3em}
+    \includesvg[width = 5em]{../pictures/gnome-files-logo}\tikzmark{nautilus}
+
+    \vspace{3em}
+
+    \tikzmark{finder}\includesvg[width = 5em]{../pictures/finder-logo}
+    \hspace{3em}
+    \includesvg[width = 5em]{../pictures/explorer-logo}\tikzmark{explorer}
+
+    \pause
+    \begin{tikzpicture}[remember picture, overlay]
+        \node[anchor=west] at ([yshift=4ex]pic cs:dolphin) [xshift=-4cm, align=right, text width=3cm]{\Large\textbf{Dolphin}};
+        \node[anchor=east] at ([yshift=4ex]pic cs:nautilus) [xshift=4cm, align=left, text width=3cm]{\Large\textbf{Nautilus}};
+        \node[anchor=west] at ([yshift=4ex]pic cs:finder) [xshift=-4cm, align=right, text width=3cm]{\Large\textbf{Finder}};
+        \node[anchor=east] at ([yshift=4ex]pic cs:explorer) [xshift=4cm, align=left, text width=3cm]{\Large\textbf{Explorer}};
+    \end{tikzpicture}
+\end{frame}
+
+\subsection{Was ist ein Dateisystem?}\label{subsec:was-ist-ein-dateisystem}
+
+\begin{frame}
+    \slidehead
+    \begin{center}
+        \includesvg[width = 2em]{../pictures/dolphin-logo}
+        \hspace{2em}
+        \includesvg[width = 2em]{../pictures/gnome-files-logo}
+        \hspace{2em}
+        \includesvg[width = 2em]{../pictures/finder-logo}
+        \hspace{2em}
+        \includesvg[width = 2em]{../pictures/explorer-logo}
+
+        \vspace{1em}
+        Was haben diese Programme gemeinsam?
+    \end{center}
+
+    \vspace{1ex}
+    \pause
+    \begin{itemize}
+        [<+->]
+        \item Programme, um Dateien zu verwalten
+        \item Diese Dateien befinden sich auf einem Dateisystem
+        \begin{itemize}
+            \item NTFS
+            \item exFAT
+            \item ext4
+            \item APFS
+            \item ZFS
+            \item \dots und viele mehr
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \slidehead
+    Grundidee: Baumstruktur
+    \\
+    \vspace{1em}
+    \begin{center}
+        \begin{tikzpicture}
+            \node[scale=1.7] at (4,4) {\mytree};
+        \end{tikzpicture}
+    \end{center}
+\end{frame}
+
+\subsection{Zusammenarbeit}\label{subsec:zusammenarbeit}
+
+\begin{frame}
+    \slidehead
+    Für die Zusammenarbeit besonders wichtig:
+    \begin{itemize}
+        [<+->]
+        \item Wie können wir ein Dateisystem verteilen?
+        \item Wie können wir den Zustand an einem bestimmten Zeitpunkt wiederherstellen?
+    \end{itemize}
+\end{frame}
+
+\subsection{Replikation}\label{subsec:replikation}
+
+\begin{frame}[c]
+    \slidehead
+    \centering
+    \Large
+    Problem 1: Replikation
+\end{frame}
+
+\begin{frame}
+    \slidehead
+    Idee: Fileserver
+    \vspace{-3em}
+    \begin{center}
+        \begin{tikzpicture}
+            \node<1->[scale=0.5,draw,label={[anchor=south,font=\small]above:Globaler Zustand}] (server) at (0,0) {\mytree};
+            \node<2->[scale=0.5,gray,opacity=0.5] (user-0) at (-6,-2.5) {\mytree};
+            \node<2>[scale=0.5,gray,opacity=0.5,opacity=0] (user-fake) at (6,-2.5) {\mytree};
+            \node<3->[scale=0.5,gray,opacity=0.5] (user-1) at (-2,-2.5) {\mytree};
+            \node<3->[scale=0.5,gray,opacity=0.5] (user-2) at (2,-2.5) {\mytree};
+            \node<3->[scale=0.5,gray,opacity=0.5] (user-3) at (6,-2.5) {\mytree};
+
+            \node<2->[below=1ex of user-0,label={[anchor=north,font=\small]below:Du},orange!80] {\faUser};
+            \node<3->[below=1ex of user-1,label={[anchor=north,font=\small]below:Mitglied \#1},blue!50,opacity=0.8] {\faUser};
+            \node<3->[below=1ex of user-2,label={[anchor=north,font=\small]below:Mitglied \#2},blue!50,opacity=0.8] {\faUser};
+            \node<3->[below=1ex of user-3,label={[anchor=north,font=\small]below:Mitglied \#3},blue!50,opacity=0.8] {\faUser};
+
+            \draw<2-> ([yshift=-0.5ex,xshift=-1.3ex]server.south) -- (user-0.north);
+            \draw<3-> ([yshift=-0.5ex,xshift=-0.5ex]server.south) -- (user-1.north);
+            \draw<3-> ([yshift=-0.5ex,xshift=0.5ex]server.south) -- (user-2.north);
+            \draw<3-> ([yshift=-0.5ex,xshift=1.3ex]server.south) -- (user-3.north);
+        \end{tikzpicture}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \slidehead
+    Idee: Fileserver
+    \begin{itemize}
+        \item Ein Fileserver agiert als zentrale Schnittstelle und single-source-of-truth
+        \begin{itemize}
+            \item \textbf{Alle} Writes werden direkt im Globalen Zustand gemacht und sind für alle sichtbar
+            \item \textbf{Alle} Reads sind
+        \end{itemize}
+    \end{itemize}
+\end{frame}

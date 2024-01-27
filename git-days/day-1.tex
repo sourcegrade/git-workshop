@@ -1,0 +1,68 @@
+%! suppress = MissingImport
+\RequirePackage{import}
+\subimport{../common}{preamble}
+\subimport{../common}{packages}
+\begin{document}
+
+    \section{Introduction}\label{sec:introduction}
+
+    \begin{frame}[c]
+        \centering
+        \Huge
+        \textbf{Git Days}
+        \\
+        \vspace{1ex}
+        \Large
+        \textcolor{orange}{Day 1}
+    \end{frame}
+
+    \subimport{../chapters}{filesystem}
+    \subimport{../chapters}{commits}
+    \subimport{../chapters}{staging}
+    \subimport{../chapters}{branches}
+    \subimport{../chapters}{merging}
+    \subimport{../chapters}{rebasing}
+
+
+    \section{Remote und Local}\label{sec:remote-und-local}
+
+    \begin{frame}[c]
+        \slidehead
+        \center
+        \begin{tikzpicture}
+            \node[node, rectangle] (server) {Remote};
+            \node[node, rectangle, right=8em of server] (client) {Local};
+            \draw[parent] (server) to[out=90, in=90, looseness=.5] node[above]{\texttt{fetch}} (client);
+            \draw[parent] (client) to[out=270, in=270, looseness=.5] node[below]{\texttt{push}} (server);
+        \end{tikzpicture}
+    \end{frame}
+
+
+    \section{GitLab}\label{sec:gitlab}
+
+    \begin{frame}[c]
+        \centering
+        \Large
+        \textbf{GitLab}
+    \end{frame}
+
+
+    \section{Good and Bad Practices}\label{sec:good-and-bad-practices}
+
+    \begin{frame}{Bad Practices}
+        \slidehead
+        \begin{itemize}
+            \item Arbeiten auf dem \texttt{master}-Branch
+            \item Veröffentlichen von sensiblen Daten
+            \item Unfokussierte commits
+            \item git pull mit auto merge
+            \item Force push
+            \item Committing binaries (mit ausnahmen)
+            \item Large files (use git LFS)
+        \end{itemize}
+    \end{frame}
+
+
+    \section{Live Giting}\label{sec:live-giting}
+
+\end{document}
