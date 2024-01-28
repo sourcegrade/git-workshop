@@ -139,12 +139,63 @@
 
 \begin{frame}
     \slidehead
+    \vspace{-1em}
     Idee: Fileserver
-    \begin{itemize}
-        \item Ein Fileserver agiert als zentrale Schnittstelle und single-source-of-truth
+    \begin{itemize}[<+->]
+        \item Ein Fileserver agiert als zentrale Schnittstelle und \enquote{Single source of truth}
         \begin{itemize}
-            \item \textbf{Alle} Writes werden direkt im Globalen Zustand gemacht und sind für alle sichtbar
-            \item \textbf{Alle} Reads sind
+            \item Writes werden direkt im Globalen Zustand geschrieben und sind für alle direkt sichtbar
+            \item Reads liefern immer den aktuellsten Zustand
+        \end{itemize}
+        \item \enquote{Single point of failure} (SPOF)
+        \item Keine klare \enquote{history}
+        \begin{itemize}
+            \item Veränderungen werden nicht gruppiert
+            \item Unmöglich\footnote{Ja, es gibt Backups - dazu kommen wir noch} auf einen alten Zustand zurückzugehen
+        \end{itemize}
+        \item Unabhängige Arbeit unmöglich!
+        \begin{itemize}
+            \item Wenn gerade am Code gearbeitet wird, kompiliert er meistens nicht
+            \item Dateien werden gegenseitig überschrieben
         \end{itemize}
     \end{itemize}
+\end{frame}
+
+\begin{frame}[c]
+    \slidehead
+    \Large
+    \centering
+    \enquote{Aber wir machen Backups!}
+    \pause
+    \\
+    \vspace{1em}
+    \textcolor{red!90}{Nein.}
+\end{frame}
+
+\begin{frame}
+    \vspace{-2em}
+    \slidehead
+    \begin{center}
+        \begin{tikzpicture}
+            \node[scale=0.5,draw,label={[anchor=south,font=\small]above:Globaler Zustand}] (server) at (0,0) {\mytree};
+            \node[scale=0.5,gray,opacity=0.5] (user-0) at (-6,-2.5) {\mytree};
+            \node[scale=0.5,gray,opacity=0.5] (user-1) at (-2,-2.5) {\mytree};
+            \node[scale=0.5,gray,opacity=0.5] (user-2) at (2,-2.5) {\mytree};
+            \node[scale=0.5,gray,opacity=0.5] (user-3) at (6,-2.5) {\mytree};
+
+            \node[below=1ex of user-0,label={[anchor=north,font=\small]below:Du},orange!80] {\faUser};
+            \node[below=1ex of user-1,label={[anchor=north,font=\small]below:Mitglied \#1},blue!50,opacity=0.8] {\faUser};
+            \node[below=1ex of user-2,label={[anchor=north,font=\small]below:Mitglied \#2},blue!50,opacity=0.8] {\faUser};
+            \node[below=1ex of user-3,label={[anchor=north,font=\small]below:Mitglied \#3},blue!50,opacity=0.8] {\faUser};
+
+            \draw ([yshift=-0.5ex,xshift=-1.3ex]server.south) -- (user-0.north);
+            \draw ([yshift=-0.5ex,xshift=-0.5ex]server.south) -- (user-1.north);
+            \draw ([yshift=-0.5ex,xshift=0.5ex]server.south) -- (user-2.north);
+            \draw ([yshift=-0.5ex,xshift=1.3ex]server.south) -- (user-3.north);
+
+            \node<2->[draw,rounded corners=1em,red,above=1em of user-0,inner sep=1em] (feature-a) {Feature A};
+
+            \draw<2->[->,red] (feature-a.east) -- (server);
+        \end{tikzpicture}
+    \end{center}
 \end{frame}
