@@ -84,7 +84,7 @@ fun createBuild(buildGroup: String, buildName: String): BuildType {
                     name = "Create final pdf"
                     workingDir = buildGroup
                     path = "cp"
-                    arguments = "$buildName.tex $buildGroup-$buildName-RC%env.BUILD_NUMBER%.pdf"
+                    arguments = "$buildName.pdf $buildGroup-$buildName-RC%env.BUILD_NUMBER%.pdf"
                 }
             }
 
