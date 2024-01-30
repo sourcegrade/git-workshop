@@ -45,6 +45,7 @@
         \end{column}
         \begin{column}{.5\textwidth}
             \centering
+            % @formatter:off
             \begin{codeBlock}[]{}
                 .
                 |-> .git
@@ -56,6 +57,7 @@
                     |-> objects
                     |-> refs
             \end{codeBlock}
+            % @formatter:on
         \end{column}
     \end{columns}
 \end{frame}
@@ -96,4 +98,58 @@
     \only<3>{Commit \texttt{c3c3c}, z.B. \texttt{\enquote{Fix sum}}}
     \only<4>{\texttt{HEAD} zeigt \textit{indirekt} auf einen Commit (hier \texttt{c3c3c})}
     \only<5>{\texttt{HEAD} kann auch \textit{direkt} auf Commit (hier \texttt{c2c2c}) zeigen}
+\end{frame}
+
+\subsection{Exkurs: Hashing}\label{subsec:exkurs:-hashing}
+
+\begin{frame}[c]
+    \slidehead
+    \Huge
+    \centering
+    Was ist \enquote{Hashing}?
+\end{frame}
+
+\begin{frame}[c]
+    \slidehead
+    \centering
+    {
+        \Large
+        \begin{tikzpicture}
+            \node (file) {\fontsize{42pt}{42pt} \faFile*};
+            \node[right=4em of file] (hash) {648a6a6ff...};
+
+            \draw[-LaTeX, line width=2mm] (file) -- (hash);
+        \end{tikzpicture}
+    }
+    \begin{align*}
+        \mathbb{B} &:= \{0, 1\}^* \quad \text{(binäre Zahl, beliebige Länge)} \\
+        \mathbb{B}_n &:= \{0, 1\}^n \quad \text{(binäre Zahl, Länge $n$)} \\
+        h &: \mathbb{B} \rightarrow \mathbb{B}_n \\
+        h(x) &= y \quad \forall x \in \mathbb{B}, \, \exists y \in \mathbb{B}_n
+    \end{align*}
+\end{frame}
+
+\begin{frame}[c, fragile]
+    \slidehead
+    \centering
+    \bashcommand{sha1sum file.txt}
+    % @formatter:off
+    \begin{codeBlock}[]{}
+        648a6a6ffffdaa0badb23b8baf90b6168dd16b3a  file.txt
+    \end{codeBlock}
+    % @formatter:on
+\end{frame}
+
+\begin{frame}[c]
+    \slidehead
+    \centering
+    {
+        \Large
+        \begin{tikzpicture}
+            \node[scale=0.4] (file) {\mytree};
+            \node[right=4em of file] (hash) {a72da862f...};
+
+            \draw[-LaTeX, line width=2mm] (file) -- (hash);
+        \end{tikzpicture}
+    }
 \end{frame}

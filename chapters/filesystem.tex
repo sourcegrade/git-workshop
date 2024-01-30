@@ -1,15 +1,3 @@
-\newcommand{\mytree}{
-    \begin{forest}
-        for tree={anchor=center}
-        [\faFolder, s sep=1em
-        [\faFolder[\faFolder][\faFolder][\faFile*]]
-        [\faFolder, before computing xy={s/.average={s}{siblings}}[\faFolder][\faFile*]]
-        [\faFolder[\faFile*][\faFile*][\faFile*]]
-        ]
-    \end{forest}
-}
-
-
 \section{Dateisysteme}\label{sec:dateisysteme}
 
 \begin{frame}[b]
