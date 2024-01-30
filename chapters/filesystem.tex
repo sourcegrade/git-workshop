@@ -94,11 +94,23 @@
 
 \begin{frame}
     \slidehead
-    Für die Zusammenarbeit besonders wichtig:
-    \begin{itemize}
-        [<+->]
-        \item Wie können wir ein Dateisystem verteilen?
-        \item Wie können wir den Zustand an einem bestimmten Zeitpunkt wiederherstellen?
+    \begin{itemize}[<+->]
+        \item Dateisysteme sind oberflächlich sehr ähnlich
+        \begin{itemize}
+            \item Ordner
+            \item Dateien
+        \end{itemize}
+        \item Es gibt auch sehr viele Unterschiede
+        \begin{itemize}
+            \item OS Kompatibilität
+            \item Line-Endings
+            \item Metadaten
+        \end{itemize}
+        \item Für die Zusammenarbeit besonders wichtig:
+        \begin{itemize}
+            \item Wie können wir ein Dateisystem verteilen?
+            \item Wie können wir den Zustand an einem bestimmten Zeitpunkt wiederherstellen?
+        \end{itemize}
     \end{itemize}
 \end{frame}
 
@@ -141,7 +153,8 @@
     \slidehead
     \vspace{-1em}
     Idee: Fileserver
-    \begin{itemize}[<+->]
+    \begin{itemize}
+        [<+->]
         \item Ein Fileserver agiert als zentrale Schnittstelle und \enquote{Single source of truth}
         \begin{itemize}
             \item Writes werden direkt im Globalen Zustand geschrieben und sind für alle direkt sichtbar
@@ -172,16 +185,39 @@
     \textcolor{red!90}{Nein.}
 \end{frame}
 
+\subsection{Snapshots}\label{subsec:snapshots}
+
+\begin{frame}[c]
+    \slidehead
+    \centering
+    \Large
+    Problem 2: Snapshots
+\end{frame}
+
 \begin{frame}
-    \vspace{-2em}
+    \vspace{-2.5em}
     \slidehead
     \begin{center}
         \begin{tikzpicture}
+            \tikzset{
+                serverFeature/.style={
+                    draw,
+                    rounded corners=1ex,
+                    minimum height=1.5em,
+                    minimum width=3cm,
+                },
+                userFeature/.style={
+                    draw,
+                    rounded corners=1em,
+                    inner sep=1em,
+                },
+            }
+
             \node[scale=0.5,draw,label={[anchor=south,font=\small]above:Globaler Zustand}] (server) at (0,0) {\mytree};
-            \node[scale=0.5,gray,opacity=0.5] (user-0) at (-6,-2.5) {\mytree};
-            \node[scale=0.5,gray,opacity=0.5] (user-1) at (-2,-2.5) {\mytree};
-            \node[scale=0.5,gray,opacity=0.5] (user-2) at (2,-2.5) {\mytree};
-            \node[scale=0.5,gray,opacity=0.5] (user-3) at (6,-2.5) {\mytree};
+            \node[scale=0.5,gray,opacity=0.2] (user-0) at (-6,-2.5) {\mytree};
+            \node[scale=0.5,gray,opacity=0.2] (user-1) at (-2,-2.5) {\mytree};
+            \node[scale=0.5,gray,opacity=0.2] (user-2) at (2,-2.5) {\mytree};
+            \node[scale=0.5,gray,opacity=0.2] (user-3) at (6,-2.5) {\mytree};
 
             \node[below=1ex of user-0,label={[anchor=north,font=\small]below:Du},orange!80] {\faUser};
             \node[below=1ex of user-1,label={[anchor=north,font=\small]below:Mitglied \#1},blue!50,opacity=0.8] {\faUser};
@@ -193,9 +229,32 @@
             \draw ([yshift=-0.5ex,xshift=0.5ex]server.south) -- (user-2.north);
             \draw ([yshift=-0.5ex,xshift=1.3ex]server.south) -- (user-3.north);
 
-            \node<2->[draw,rounded corners=1em,red,above=1em of user-0,inner sep=1em] (feature-a) {Feature A};
+            \node[serverFeature,brown,above left=1ex and 6em of server] (server-backup-n) {Backup};
 
-            \draw<2->[->,red] (feature-a.east) -- (server);
+            \node<2>[userFeature,red] (feature-a) at (user-0) {Feature A};
+            \node<2-3>[userFeature,blue!50!green] (fix-b) at (user-2) {Fix B};
+            \node<2-4>[userFeature,red] (feature-C) at (user-3) {Feature C};
+
+            \node<3->[serverFeature,red,below=1ex of server-backup-n] (server-feature-a) {Feature A};
+            \node<4->[serverFeature,blue!50!green,below=1ex of server-feature-a] (server-fix-b) {Fix B};
+            \node<5->[serverFeature,red,below=1ex of server-fix-b] (server-feature-c) {Feature C};
+
+            \node<6>[right=2em of server,align=center,text width=5cm,orange,draw,label={[anchor=south,font=\small,align=left,text width=5cm]above:Frage:}] (problem) {Fix B rückgängig machen?};
         \end{tikzpicture}
     \end{center}
+\end{frame}
+
+\begin{frame}
+    \slidehead
+    \begin{itemize}
+        [<+->]
+        \item Projektzustand nur zu bestimmten Zeitpunkten gespeichert.
+        \begin{itemize}
+            \item Wiederherstellen von einzelnen Veränderungen sehr schwierig
+            \item Vergleich von Zuständen sehr schwierig
+            \item Kein \enquote{Blame}
+            \item Backups sind keine Versionsverwaltung!
+        \end{itemize}
+        \item USB-Stick Verfahren ist noch ungeeigneter
+    \end{itemize}
 \end{frame}
