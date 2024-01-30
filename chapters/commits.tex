@@ -1,8 +1,31 @@
 \section{Commits}\label{sec:commits}
 
+\begin{frame}[b]
+    \begin{center}
+        \begin{tikzpicture}
+            \node[commit] (commit) {c1c1c};
+            \node[commit,left=2em of commit,fill opacity=0.4,text=black] (before) {$\cdots$};
+            \node[commit,right=2em of commit,fill opacity=0.4,text=black] (after) {$\cdots$};
+
+            \draw[parent] (commit.west) to (before.east);
+            \draw[parent] (after.west) to (commit.east);
+        \end{tikzpicture}
+    \end{center}
+    \vfill
+    \begin{flushleft}
+        \Huge
+        \textbf{Commits}
+    \end{flushleft}
+\end{frame}
+
 \begin{frame}
     \slidehead
     \begin{itemize}
+        \item Ein Commit ist ein logischer Snapshot von einer Repository
+        \begin{itemize}
+            \item Zeitpunkt
+            \item Dateisystemzustand
+        \end{itemize}
         \item Datei hinzugefügt, geändert, verschoben oder gelöscht
         \item mit Nachricht versehen
         \item \enquote{kryptische} Bezeichnung (Hash), z.B. \texttt{bc7f1a9e22bc7f19e22bc}\dots
@@ -12,12 +35,32 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
     \slidehead
-    \vspace{-1em}
-    \centering
-    \includegraphics[scale=.3]{../pictures/structure-overview}
+    Repository initialisieren
+    \begin{columns}[c]
+        \begin{column}{.5\textwidth}
+            \centering
+            \bashcommand{git init}
+        \end{column}
+        \begin{column}{.5\textwidth}
+            \centering
+            \begin{codeBlock}[]{}
+                .
+                |-> .git
+                    |-> HEAD
+                    |-> config
+                    |-> description
+                    |-> hooks
+                    |-> info
+                    |-> objects
+                    |-> refs
+            \end{codeBlock}
+        \end{column}
+    \end{columns}
 \end{frame}
+
+\subsection{Basics}\label{subsec:basics}
 
 \begin{frame}
     \slidehead
@@ -48,9 +91,9 @@
         \draw<5->[parent] (head2) to (c2);
     \end{tikzpicture}
     \vspace{1em}\par
-    \only<1>{initialer Commit \texttt{c1c1c}, z.B. \texttt{"initial commit"}}
-    \only<2>{Commit \texttt{c2c2c}, z.B. \texttt{"implement add and mul"}}
-    \only<3>{Commit \texttt{c3c3c}, z.B. \texttt{"fix sum"}}
+    \only<1>{Initialer Commit \texttt{c1c1c}, z.B. \texttt{\enquote{Initial Commit}}}
+    \only<2>{Commit \texttt{c2c2c}, z.B. \texttt{\enquote{Implement add and mul}}}
+    \only<3>{Commit \texttt{c3c3c}, z.B. \texttt{\enquote{Fix sum}}}
     \only<4>{\texttt{HEAD} zeigt \textit{indirekt} auf einen Commit (hier \texttt{c3c3c})}
     \only<5>{\texttt{HEAD} kann auch \textit{direkt} auf Commit (hier \texttt{c2c2c}) zeigen}
 \end{frame}
