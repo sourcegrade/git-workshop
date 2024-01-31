@@ -71,25 +71,29 @@ fun createBuild(buildGroup: String, buildName: String): BuildType {
             steps {
                 exec {
                     name = "Clean up old pdf"
-                    workingDir = buildGroup
-                    path = "rm"
-                    arguments = "-f $buildGroup-$buildName-RC*.pdf"
+                    path = "make"
+                    arguments = "cleanBuild"
                 }
                 exec {
                     name = "Build $buildGroup/$buildName with AlgoTeX"
-                    workingDir = buildGroup
-                    path = "latexmk"
-                    arguments = "--shell-escape -synctex=1 -interaction=nonstopmode -file-line-error -lualatex $buildName.tex"
+                    path = "make"
+                    arguments = "-j FILES=$buildGroup/$buildName.tex"
                 }
                 exec {
                     name = "Create final pdf"
-                    workingDir = buildGroup
+                    workingDir = "build"
                     path = "cp"
                     arguments = "$buildName.pdf $buildGroup-$buildName-RC%env.BUILD_NUMBER%.pdf"
                 }
+                exec {
+                    name = "Create final pdf (darkmode)"
+                    workingDir = "build"
+                    path = "cp"
+                    arguments = "$buildName-darkmode.pdf $buildGroup-$buildName-RC%env.BUILD_NUMBER%-darkmode.pdf"
+                }
             }
 
-            artifactRules = "+:$buildGroup/$buildGroup-$buildName-RC%env.BUILD_NUMBER%.pdf"
+            artifactRules = "+:./build/$buildGroup-$buildName-RC%env.BUILD_NUMBER%*.pdf"
         }
     }
 }
