@@ -76,7 +76,7 @@ fun createBuild(buildGroup: String, buildName: String): BuildType {
                 exec {
                     name = "Build $buildGroup/$buildName with AlgoTeX"
                     path = "make"
-                    arguments = "-j FILES='$buildGroup/$buildName.tex'"
+                    arguments = "-j FILES=$buildGroup/$buildName.tex"
                 }
                 exec {
                     name = "Create final pdf"
