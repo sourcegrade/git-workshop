@@ -1,0 +1,42 @@
+\section{.gitignore}\label{sec:.gitignore}
+
+\begin{frame}[b]
+    \begin{center}
+        \includesvg[width = 8em]{../pictures/git-logo-dark}
+    \end{center}
+    \vfill
+    \begin{flushleft}
+        \Huge
+        \textbf{.gitignore}
+    \end{flushleft}
+\end{frame}
+
+\begin{frame}
+    \slidehead
+    \begin{itemize}[<+->]
+        \item Manche Ordner (und Dateien) sollten nie committed werden
+        \begin{itemize}
+            \item .idea
+            \item .vscode
+            \item build
+            \item node\_modules
+        \end{itemize}
+        \item Diese Regeln können in eine \enquote{.gitignore} Datei festgelegt werden
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \slidehead
+    % @formatter:off
+    \begin{codeBlock}[]{minted language=python}
+        *.log
+
+        foo/**/bar
+
+        !important.log
+
+        .idea/
+    \end{codeBlock}
+    % @formatter:on
+    \renewcommand{\thefootnote}{\relax}\footnotetext{https://www.atlassian.com/git/tutorials/saving-changes/gitignore\#git-ignore-patterns}
+\end{frame}
