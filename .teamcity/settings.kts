@@ -80,11 +80,13 @@ fun createBuild(buildGroup: String, buildName: String): BuildType {
                 }
                 exec {
                     name = "Create final pdf"
+                    workingDir = "build"
                     path = "cp"
                     arguments = "$buildName.pdf $buildGroup-$buildName-RC%env.BUILD_NUMBER%.pdf"
                 }
                 exec {
                     name = "Create final pdf (darkmode)"
+                    workingDir = "build"
                     path = "cp"
                     arguments = "$buildName-darkmode.pdf $buildGroup-$buildName-RC%env.BUILD_NUMBER%-darkmode.pdf"
                 }
