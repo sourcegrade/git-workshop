@@ -55,14 +55,14 @@
         [<+->]
         \item Programme, um Dateien zu verwalten
         \item Diese Dateien befinden sich auf einem Dateisystem
-        \begin{itemize}
-            \item NTFS
-            \item exFAT
-            \item ext4
-            \item APFS
-            \item ZFS
-            \item \dots und viele mehr
-        \end{itemize}
+            \begin{itemize}
+                \item NTFS
+                \item exFAT
+                \item ext4
+                \item APFS
+                \item ZFS
+                \item \dots und viele mehr
+            \end{itemize}
     \end{itemize}
 \end{frame}
 
@@ -84,21 +84,21 @@
     \slidehead
     \begin{itemize}[<+->]
         \item Dateisysteme sind oberflächlich sehr ähnlich
-        \begin{itemize}
-            \item Ordner
-            \item Dateien
-        \end{itemize}
+            \begin{itemize}
+                \item Ordner
+                \item Dateien
+            \end{itemize}
         \item Es gibt auch sehr viele Unterschiede
-        \begin{itemize}
-            \item OS Kompatibilität
-            \item Line-Endings
-            \item Metadaten
-        \end{itemize}
+            \begin{itemize}
+                \item OS Kompatibilität
+                \item Line-Endings
+                \item Metadaten
+            \end{itemize}
         \item Für die Zusammenarbeit besonders wichtig:
-        \begin{itemize}
-            \item Wie können wir ein Dateisystem verteilen?
-            \item Wie können wir den Zustand an einem bestimmten Zeitpunkt wiederherstellen?
-        \end{itemize}
+            \begin{itemize}
+                \item Wie können wir ein Dateisystem verteilen?
+                \item Wie können wir den Zustand an einem bestimmten Zeitpunkt wiederherstellen?
+            \end{itemize}
     \end{itemize}
 \end{frame}
 
@@ -144,21 +144,21 @@
     \begin{itemize}
         [<+->]
         \item Ein Fileserver agiert als zentrale Schnittstelle und \enquote{Single source of truth}
-        \begin{itemize}
-            \item Writes werden direkt im Globalen Zustand geschrieben und sind für alle direkt sichtbar
-            \item Reads liefern immer den aktuellsten Zustand
-        \end{itemize}
+            \begin{itemize}
+                \item Writes werden direkt im Globalen Zustand geschrieben und sind für alle direkt sichtbar
+                \item Reads liefern immer den aktuellsten Zustand
+            \end{itemize}
         \item \enquote{Single point of failure} (SPOF)
         \item Keine klare \enquote{history}
-        \begin{itemize}
-            \item Veränderungen werden nicht gruppiert
-            \item Unmöglich\footnote{Ja, es gibt Backups - dazu kommen wir noch} auf einen alten Zustand zurückzugehen
-        \end{itemize}
+            \begin{itemize}
+                \item Veränderungen werden nicht gruppiert
+                \item Unmöglich\footnote{Ja, es gibt Backups - dazu kommen wir noch} auf einen alten Zustand zurückzugehen
+            \end{itemize}
         \item Unabhängige Arbeit unmöglich!
-        \begin{itemize}
-            \item Wenn gerade am Code gearbeitet wird, kompiliert er meistens nicht
-            \item Dateien werden gegenseitig überschrieben
-        \end{itemize}
+            \begin{itemize}
+                \item Wenn gerade am Code gearbeitet wird, kompiliert er meistens nicht
+                \item Dateien werden gegenseitig überschrieben
+            \end{itemize}
     \end{itemize}
 \end{frame}
 
@@ -237,12 +237,12 @@
     \begin{itemize}
         [<+->]
         \item Projektzustand nur zu bestimmten Zeitpunkten gespeichert.
-        \begin{itemize}
-            \item Wiederherstellen von einzelnen Veränderungen sehr schwierig
-            \item Vergleich von Zuständen sehr schwierig
-            \item Kein \enquote{Blame}
-            \item Backups sind keine Versionsverwaltung!
-        \end{itemize}
+            \begin{itemize}
+                \item Wiederherstellen von einzelnen Veränderungen sehr schwierig
+                \item Vergleich von Zuständen sehr schwierig
+                \item Kein \enquote{Blame}
+                \item Backups sind keine Versionsverwaltung!
+            \end{itemize}
         \item USB-Stick Verfahren ist noch ungeeigneter
     \end{itemize}
 \end{frame}
