@@ -1,6 +1,7 @@
 import jetbrains.buildServer.configs.kotlin.BuildFeatures
 import jetbrains.buildServer.configs.kotlin.BuildType
 import jetbrains.buildServer.configs.kotlin.DslContext
+import jetbrains.buildServer.configs.kotlin.buildFeatures.approval
 import jetbrains.buildServer.configs.kotlin.buildFeatures.commitStatusPublisher
 import jetbrains.buildServer.configs.kotlin.buildFeatures.perfmon
 import jetbrains.buildServer.configs.kotlin.buildSteps.exec
@@ -117,5 +118,9 @@ fun BuildFeatures.configureBaseFeatures() {
                 token = "credentialsJSON:f57a4fdd-fb30-41c0-9983-620364336d03"
             }
         }
+    }
+    approval {
+        approvalRules = "group:sourcegrade:1"
+        manualRunsApproved = true
     }
 }
