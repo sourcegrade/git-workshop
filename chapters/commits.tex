@@ -84,13 +84,22 @@
         \node<3>[head, below=2 em of c3](head2){};
         \draw<3>[parent] (head2) to (c3);
         % state 4
-        \node<4->[branch, below=2em of c3](branch_master){master};
-        \draw<4->[parent] (branch_master) to (c3);
-        \node<4>[head, below=2em of branch_master](head2){};
-        \draw<4>[parent] (head2) to (branch_master);
+        \node<4-5>[branch, below=2em of c3](branch-master){master};
+        \draw<4-5>[parent] (branch-master) to (c3);
+        \node<4>[head, below=2em of branch-master](head2){};
+        \draw<4>[parent] (head2) to (branch-master);
         % state 5
-        \node<5->[head, below=2em of c2](head2){};
-        \draw<5->[parent] (head2) to (c2);
+        \node<5>[head, below=2em of c2](head2){};
+        \draw<5>[parent] (head2) to (c2);
+        % state 6
+        \node<6>[scale=0.4, below=2em of c1] (tree-c1) {\mytree};
+        \node<6>[scale=0.4, below=2em of c2] (tree-c2) {\mytree};
+        \node<6>[scale=0.4, below=2em of c3] (tree-c3) {\mytree};
+
+        \draw<6>[parent] (c1) -- (tree-c1);
+        \draw<6>[parent] (c2) -- (tree-c2);
+        \draw<6>[parent] (c3) -- (tree-c3);
+
     \end{tikzpicture}
     \vspace{1em}\par
     \only<1>{Initialer Commit \texttt{c1c1c}, z.B. \texttt{\enquote{Initial Commit}}}
@@ -98,6 +107,7 @@
     \only<3>{Commit \texttt{c3c3c}, z.B. \texttt{\enquote{Fix sum}}}
     \only<4>{\texttt{HEAD} zeigt \textit{indirekt} auf einen Commit (hier \texttt{c3c3c})}
     \only<5>{\texttt{HEAD} kann auch \textit{direkt} auf Commit (hier \texttt{c2c2c}) zeigen}
+    \only<6>{Commits zeigen immer auf einen gesamten Snapshot des Dateisystems}
 \end{frame}
 
 \subsection{Exkurs: Hashing}\label{subsec:exkurs:-hashing}
