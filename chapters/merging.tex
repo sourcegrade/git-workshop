@@ -81,7 +81,6 @@
     \end{itemize}
 \end{frame}
 
-
 \subsection*{Normalfall mit Squash}
 
 \begin{frame}
@@ -98,36 +97,26 @@
         \node<1>[branch, right=2em of c3](m1){master};
         \draw<1>[parent] (m1) to (c3);
         % create c2
-        \node<1>[commit, below=2em of c3](c2){c2c2c};
-        \draw<1>[parent] (c2.west) to (c1.east);
+        \node<1->[commit, below right=3em and -3em of c3](c2){c2c2c};
+        \draw<1->[parent] (c2.west) to (c1.east);
         % create c4
-        \node<1>[commit, right=2em of c2](c4){c4c4c};
-        \draw<1>[parent] (c4) to (c2);
+        \node<1->[commit, right=2em of c2](c4){c4c4c};
+        \draw<1->[parent] (c4) to (c2);
         % create branch feature
         \node<1>[branch, right=2em of c4](fa1){feature};
         \draw<1>[parent] (fa1) to (c4);
         % 2 # create c5
-        \node<2->[mergecommit, below right=1.5em and 2em of c1, minimum width=14em](c5){c5c5c};
-        \draw<2->[parent] (c5.west) to (c1.east);
-        % 2 # create c2
-        \node<2->[commit, below right=5em and 2em of c1](c2){c2c2c};
-        \draw<2->[parent] (c2.west) to (c1.east);
-        % 2 # create c4
-        \node<2->[commit, right=2em of c2](c4){c4c4c};
-        \draw<2->[parent] (c4) to (c2);
-        % 2 # create c6
-        \node<2->[mergecommit, right=10em of c3](c6){c6c6c};
-        \draw<2->[parent] (c6) to (c3);
-        \draw<2->[parent] (c6.west) to (c5.east);
+        \node<2->[mergecommit, right=2em of c3, minimum width=14em](c5){c5c5c};
+        \draw<2->[parent] (c5.west) to (c3.east);
         % 2 # create branch feature
         \node<2->[branch, right=2em of c4](fa1){feature};
         \draw<2->[parent] (fa1) to (c4);
         % 2 # create branch master
-        \node<2->[branch, right=2em of c6](m){master};
-        \draw<2->[parent] (m) to (c6);
+        \node<2->[branch, right=2em of c5](m){master};
+        \draw<2->[parent] (m) to (c5);
         % create meta
-        % \draw<2->[parent, dotted] ([yshift=1.5em] c2.north) to (c2.north);
-        \draw<2->[ref-arc] ([yshift=1.5em] c4.north) to (c4.north);
+        \draw<2->[ref-arc] (c5.south west) to (c2.north west);
+        \draw<2->[ref-arc] (c5.south east) to (c4.north east);
     \end{tikzpicture}
     \vspace{1em}
     \begin{itemize}
