@@ -78,4 +78,37 @@
             Erstellen Sie einen neuen Commit mit dieser Änderung und pushen Sie ihn auf den Remote.
         \end{subtask*}
     \end{task}
+
+    \begin{task}{Fehler Finden}
+
+        \begin{subtask*}{Repository Klonen und Branch Wechseln}
+            \begin{enumerate}
+                \item \mintinline{bash}{git clone git@github.com:benutzername/meinprojekt.git}
+                \item \mintinline{bash}{git checkout master}
+            \end{enumerate}
+        \end{subtask*}
+
+        \begin{subtask*}{Neue Änderungen Hinzufügen und Commiten}
+            \begin{enumerate}
+                \item \mintinline{bash}{git add .}
+                \item \mintinline{bash}{git commit -m "Fügt neue Funktion hinzu"}
+                \item \mintinline{bash}{git pull master}
+            \end{enumerate}
+        \end{subtask*}
+
+        \begin{subtask*}{Neue Änderungen Hinzufügen und Commiten}
+            \begin{enumerate}
+                \item \mintinline{bash}{git commit -n "Hello World"}
+                \item \mintinline{bash}{git add HelloWorld.java}
+                \item \mintinline{bash}{git push master}
+            \end{enumerate}
+        \end{subtask*}
+
+        \begin{subtask*}{Branch erstellen}
+            \begin{enumerate}
+                \item \mintinline{bash}{git branch -b feature}
+            \end{enumerate}
+        \end{subtask*}
+    \end{task}
+
 \end{document}
