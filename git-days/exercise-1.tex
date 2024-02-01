@@ -1,0 +1,81 @@
+%! suppress = DocumentclassNotInRoot
+\documentclass[
+%    ngerman,
+    english,
+    accentcolor=TUDa-1c,
+%    dark_mode,
+    fontsize= 12pt,
+    a4paper,
+    aspectratio=169,
+    colorback=true,
+    fancy_row_colors,
+    boxarc=3pt,
+% shell_escape = false, % Kompatibilität mit sharelatex
+]{algoexercise}
+\RequirePackage{import}
+\RequirePackage{minted}
+
+\subimport{../common}{packages}
+
+\title{Git Days}
+\subtitle{Day 1}
+
+\begin{document}
+    \maketitle
+
+    \begin{task}{Git Installieren}
+        \begin{enumerate}
+            \item Nutzen Sie die Anleitung unter \href{https://github.com/git-guides/install-git}{https://github.com/git-guides/install-git}, um Git zu installieren.
+            \item Folgen Sie den Anweisungen für Ihr Betriebssystem.
+            Bei Fragen wenden Sie sich bitte an die Tutor:innen.
+            \item Nach der Installation öffnen Sie ein Terminal und testen Sie die Installation mit dem Befehl \mintinline{bash}{git --version}.
+            \item Konfigurieren Sie Ihren Namen und Ihre E-Mail-Adresse im globalen Kontext mit den \enquote{config}-Befehlen aus dem Vortrag.
+        \end{enumerate}
+    \end{task}
+
+    \begin{task}{Baby Steps}
+        \begin{subtask*}{Repository erstellen}
+            Initialisieren Sie eine neue lokale Repository mittels \mintinline{bash}{git init}.
+            Als initialer Commit soll ein \enquote{Hello World}-Programm erstellt werden.
+            Die Verwendung von Java wird empfohlen, andere Sprachen sind jedoch ebenfalls zulässig.
+
+            \begin{hinweis}
+                Nicht vergessen, eine passende \texttt{.gitignore}-Datei für Ihre ausgewählte Sprache und Ihr Build-Tool zu erstellen!
+            \end{hinweis}
+
+        \end{subtask*}
+        \begin{subtask*}{Remote Einstellen}
+            Erstellen Sie eine neue Repository auf GitHub oder GitLab und setzen Sie diese als Remote mit dem Namen \enquote{origin} für Ihr lokales Repository.
+            Pushen Sie Ihren initialen Commit auf den Remote.
+
+            \begin{hinweis}
+                Wir empfehlen die Verwendung von SSH (im Gegensatz zu HTTPS) für die Verbindung mit dem Remote.
+            \end{hinweis}
+
+        \end{subtask*}
+    \end{task}
+
+    \begin{task}{Calculator}
+        Nun möchten Sie einen Taschenrechner entwickeln.
+        Erstellen Sie dafür eine neue Klasse mit dem Namen \inlinejava{Calculator}.
+
+        \begin{subtask*}{Basic Operations}
+            Implementieren Sie die folgenden Methoden in der Klasse \inlinejava{Calculator}, sodass jede Methode in ihrem eigenen Commit festgehalten wird.
+            Wenn Sie eine andere Sprache ausgewählt haben, passen Sie die Syntax an.
+            \begin{itemize}
+                \item \inlinejava{int add(int a, int b)}, welche zwei Zahlen addiert.
+                \item \inlinejava{int sub(int a, int b)}, welche zwei Zahlen subtrahiert.
+                \item \inlinejava{int mul(int a, int b)}, welche zwei Zahlen multipliziert.
+                \item \inlinejava{int div(int a, int b)}, welche zwei Zahlen dividiert.
+            \end{itemize}
+            Pushen Sie Ihre Änderungen auf den Remote und schauen Sie sich die History im Webinterface an.
+        \end{subtask*}
+
+        \begin{subtask*}{Err: Div by zero}
+            Sie haben festgestellt, dass Ihre Implementierung von \inlinejava{div} nicht mit dem Dividieren durch 0 umgehen kann.
+            Schreiben Sie eine \inlinejava{if}-Anweisung, welche diesen Fall überprüft und gegebenenfalls eine \inlinejava{IllegalArgumentException} wirft.
+
+            Erstellen Sie einen neuen Commit mit dieser Änderung und pushen Sie ihn auf den Remote.
+        \end{subtask*}
+    \end{task}
+\end{document}
