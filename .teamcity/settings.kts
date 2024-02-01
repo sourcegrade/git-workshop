@@ -38,6 +38,7 @@ project {
 
     buildType(createBuild("workshops", "workflows"))
     buildType(createBuild("git-days", "day-1"))
+    buildType(createBuild("git-days", "day-2"))
     buildType(createBuild("git-days", "exercise-1"))
 
     features {
