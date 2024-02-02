@@ -8,6 +8,12 @@
 ]{algoexercise}
 \RequirePackage{import}
 \RequirePackage{minted}
+\RequirePackage{fopbot}
+
+\tikzset{
+    fbw/.style={very thick,shorten >=-0.6pt,shorten <=-0.6pt},
+    fbwshorten/.style={fbw,shorten >=0.6pt,shorten <=0.6pt},
+}
 
 \subimport{../common}{packages}
 
@@ -27,8 +33,58 @@
     \end{task}
 
     % teamarbeit mit fopbot
-    \begin{task}{Return of the Bot}
+    \begin{task}{Kollaboratives Arbeiten mit FOPBot}
+        Diese Aufgabe ist für zwei Personen gedacht. Arbeiten Sie mit Ihrem Partner zusammen, um die folgenden Aufgaben zu lösen.
+        \begin{subtask*}[points=0]{It's better together}
+            Erstellen Sie ein privates Repository auf GitHub oder GitLab und fügen Sie Ihren Partner als Contributor hinzu.
+            \begin{hinweis}
+                Eine Projektvorlage für FOPBot finden Sie unter:\\\url{https://github.com/tudalgo/fopbot-playground}
+            \end{hinweis}
+        \end{subtask*}
+        \begin{subtask*}[points=0]{Alles hat einen Anfang}
+            Erstellen Sie eine Neue FOPBot-Welt mit der Weltgröße 9x9 und platzieren Sie einen Roboter in der Mitte der Welt. Dieser Roboter soll nach Oben schauen und hat initial 38 Münzen. Implementieren Sie nun eine Methode \inlinejava{worldOutline()}, die den Roboter einmal im Uhrzeigersinn um die Welt laufen lässt und dabei die Weltgrenzen markiert. Anschließend bewegt sich der Roboter wieder in die Mitte der Welt. Das Ergebnis soll wie folgt aussehen:
 
+            \begin{FOPBotWorld}{9}{9}
+                % Walls (Since Node anchors are for some reason not as exact we use coordinates)
+                % Coins
+                \foreach \x in {0,...,8} {
+                    \foreach \y in {0,...,8} {
+                        % only outline
+                        \ifthenelse{\x=0 \OR \x=8 \OR \y=0 \OR \y=8}{
+                            \putcoin{\x}{\y}{1}
+                        }{}
+                    }
+                }
+                \path (4,4) pic[rotate=0] {Trianglebot};
+            \end{FOPBotWorld}
+
+            Anschließend commiten Sie Ihre Änderungen. Und pushen Sie diese auf den Remote in den haupt-Branch.
+        \end{subtask*}
+        \begin{subtask*}[points=0]{Issues}
+            Ihnen fällt auf, dass das Drehen des Roboters mühsam ist, da eine Rechtsdrehung drei Aufrufe der Methode \inlinejava{turnLeft()} benötigt. Sie erstellen ein Issue auf GitHub bzw. GitLab, um das Problem zu dokumentieren.
+        \end{subtask*}
+        \begin{subtask*}[points=0]{Feature-Branches}
+            Jetzt wollen wir die Funktion \inlinejava{rotateTo(Direction direction)} implementieren.
+
+            Generell ist die Namenskonvention für Feature-Branches \enquote{feature/<feature-name>}. Also eignet sich in diesem Fall beispielsweise der Branch-Name \enquote{feature/rotate} oder \enquote{feature/rotate-method}.
+            Erstellen Sie nun einen feature-Branch und implementieren Sie die Methode \inlinejava{rotateTo(Direction direction)}. Anschließend pushen Sie den Branch auf den Remote.
+        \end{subtask*}
+        \begin{subtask*}[points=0]{Pull Requests}
+            Jetzt sind Sie zufrieden mit Ihrer Implementierung das Teammitglied als Reviewer hinzufügen und möchten, dass diese in das Hauptprojekt integriert wird.
+
+            Bevor Sie das Feature in den Hauptbranch mergen, wollen Sie es nochmal von einem anderen Teammitglied überprüfen lassen. Dazu erstellen Sie einen Pull Request auf GitHub bzw. Merge Request auf GitLab und fordern eine Review des Teammitglieds an. (Pull Requests und Merge Requests sind das gleiche, nur der Name ist je nach Plattform unterschiedlich.)
+
+            \begin{hinweis}
+                Da Sie das Problem bereits in einem Issue dokumentiert haben, reicht als Text für den Pull Request \enquote{fixes \#<issue-number>} oder \enquote{closes \#<issue-number>}. Dieser Text hat den Vorteil, dass das Issue automatisch geschlossen wird, sobald der Pull Request gemerged wird. Wenn kein Issue existiert, sollten Sie den Pull Request natürlich ausführlicher beschreiben.
+            \end{hinweis}
+        \end{subtask*}
+        \begin{subtask*}[points=0]{Code Review}
+            Jetzt bitten Sie ein Teammitglied, Ihren Pull Request zu reviewen. Schauen Sie am besten gemeinsam, wie das Review-Tool auf GitHub bzw. GitLab funktioniert. Das Teammitglied soll mindestens eine Änderung anfordern, die Sie dann umsetzen. Anschließend fordern Sie erneut ein Review an. Sobald das Teammitglied zufrieden ist, wird der Pull Request approved. Damit ist er bereit zum Mergen.
+
+            \begin{anmerkung}
+                In manchen Fällen kann es auch sinnvoll sein, dass das Teammitglied die Änderungen selbst vornimmt. Man kann auch einstellen, dass ein Feature von mindestens zwei Teammitgliedern approved werden muss, bevor es gemerged werden kann.
+            \end{anmerkung}
+        \end{subtask*}
     \end{task}
 
 \end{document}
