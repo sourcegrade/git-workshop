@@ -70,9 +70,12 @@
         minimum width=8em,
         fill=TUDa-4c
     },
-    head/.style={
+    head-base/.style={
         ref,
         fill=TUDa-8b,
+    },
+    head/.style={
+        head-base,
         append after command={
             (\tikzlastnode.center) node[text=white] {\texttt{HEAD}}
         }

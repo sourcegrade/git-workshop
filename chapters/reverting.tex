@@ -1,0 +1,56 @@
+\section{Reverting}\label{sec:reverting}
+
+\begin{frame}[b]
+    \begin{center}
+        \fontsize{48pt}{48pt}
+        \faUndo
+    \end{center}
+    \vfill
+    \begin{flushleft}
+        \Huge
+        \textbf{Reverting}
+    \end{flushleft}
+\end{frame}
+
+\begin{frame}
+    \slidehead
+    \centering
+    Ein revert ist ein neuer Commit, der die Änderungen eines anderen Commits rückgängig macht.
+    \\
+    \vspace{1em}
+    \begin{tikzpicture}
+        % state 1
+        \node[commit](c1){c1c1c};
+        \node[commit, right=2 em of c1](c2){c2c2c};
+        \node[commit, right=2 em of c2](c3){c3c3c};
+        \draw[parent] (c2) to (c1);
+        \draw[parent] (c3) to (c2);
+
+        \node[head, below=2 em of c3](head){};
+        \draw[parent] (head) to (c3);
+
+        % revert HEAD
+        \node<2>[commit, fill=TUDa-9d, right=2 em of c3,label={[anchor=south,font=\small]above:Revert \texttt{c3c3c}}] (c4){c4c4c};
+        \draw<2>[parent] (c4) to (c3);
+
+        \node<4->[head-base, below=2 em of c2](head-1){HEAD\~{}1};
+        \draw<4->[parent] (head-1) to (c2);
+
+        % revert HEAD~1
+        \node<3-4>[commit, fill=TUDa-9d, right=2 em of c3,label={[anchor=south,font=\small]above:Revert \texttt{c2c2c}}] (c5){c5c5c};
+        \draw<3-4>[parent] (c5) to (c3);
+
+        \node<5>[head-base, below=2 em of c1](head-2){HEAD\~{}2};
+        \draw<5>[parent] (head-2) to (c1);
+
+        % revert HEAD~2
+        \node<5>[commit, fill=TUDa-9d, right=2 em of c3,label={[anchor=south,font=\small]above:Revert \texttt{c1c1c}}] (c6){c6c6c};
+        \draw<5>[parent] (c6) to (c3);
+    \end{tikzpicture}
+    \\
+    \vspace{1em}\par
+    \only<2>{\bashcommand{git revert HEAD}}
+    \only<3>{\bashcommand{git revert c2c2c}}
+    \only<4>{\bashcommand{git revert HEAD\~{}1}}
+    \only<5>{\bashcommand{git revert HEAD\~{}2}}
+\end{frame}
