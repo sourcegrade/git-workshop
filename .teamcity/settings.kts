@@ -39,6 +39,7 @@ project {
     buildType(createBuild("git-days", "day-1"))
     buildType(createBuild("git-days", "day-2"))
     buildType(createBuild("git-days", "exercise-1"))
+    buildType(createBuild("git-days", "exercise-2"))
 
     features {
         githubIssues {
