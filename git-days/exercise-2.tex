@@ -1,0 +1,34 @@
+%! suppress = DocumentclassNotInRoot
+\documentclass[
+    %    ngerman,
+    english, accentcolor=TUDa-1c,
+    %    dark_mode,
+    fontsize= 12pt, a4paper, aspectratio=169, colorback=true, fancy_row_colors, boxarc=3pt,
+    % shell_escape = false, % Kompatibilität mit sharelatex
+]{algoexercise}
+\RequirePackage{import}
+\RequirePackage{minted}
+
+\subimport{../common}{packages}
+
+\title{Git Days}
+\subtitle{Day 2}
+
+\begin{document}
+    \maketitle
+
+    \begin{task}{Battle of the Remotes}
+        \begin{enumerate}
+            \item Erstellen Sie eine neue Repository auf GitHub oder GitLab.
+            \item Fügen Sie das neu erstellte Repository als Remote mit dem Namen \enquote{origin} hinzu.
+            \item Fügen Sie das Repository des Tutors als Remote mit dem Namen \enquote{upstream} hinzu.
+            \item Überprüfen Sie die Remotes mit dem Befehl \mintinline{bash}{git remote -v}.
+        \end{enumerate}
+    \end{task}
+
+    % teamarbeit mit fopbot
+    \begin{task}{Return of the Bot}
+
+    \end{task}
+
+\end{document}
