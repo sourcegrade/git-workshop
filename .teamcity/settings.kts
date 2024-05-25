@@ -47,7 +47,7 @@ project {
             displayName = "sourcegrade/git-workshop"
             repositoryURL = "https://github.com/sourcegrade/git-workshop"
             authType = accessToken {
-                accessToken = "credentialsJSON:f57a4fdd-fb30-41c0-9983-620364336d03"
+                accessToken = "credentialsJSON:7828090f-5bd5-448c-99df-b7fae9540192"
             }
             param("tokenId", "")
         }
@@ -121,7 +121,7 @@ fun BuildFeatures.configureBaseFeatures() {
         publisher = github {
             githubUrl = "https://api.github.com"
             authType = personalToken {
-                token = "credentialsJSON:f57a4fdd-fb30-41c0-9983-620364336d03"
+                token = "credentialsJSON:7828090f-5bd5-448c-99df-b7fae9540192"
             }
         }
     }
