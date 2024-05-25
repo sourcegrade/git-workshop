@@ -31,8 +31,6 @@ To debug in IntelliJ Idea, open the 'Maven Projects' tool window (View
 'Debug' option is available in the context menu for the task.
 */
 
-version = "2023.11"
-
 project {
 
     buildType(createBuild("workshops", "workflows"))
