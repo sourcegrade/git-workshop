@@ -7,7 +7,6 @@ import jetbrains.buildServer.configs.kotlin.buildSteps.exec
 import jetbrains.buildServer.configs.kotlin.project
 import jetbrains.buildServer.configs.kotlin.projectFeatures.githubIssues
 import jetbrains.buildServer.configs.kotlin.triggers.vcs
-import jetbrains.buildServer.configs.kotlin.version
 
 /*
 The settings script is an entry point for defining a TeamCity
@@ -107,6 +106,10 @@ fun BuildType.configureVcs() {
 fun BuildType.configureTriggers() {
     triggers {
         vcs {
+            triggerRules = """
+                +:.
+                -:comment=^\\[ci skip\\].*
+            """.trimIndent()
             branchFilter = "+:*"
         }
     }
